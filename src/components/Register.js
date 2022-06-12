@@ -2,7 +2,7 @@ import { auth, db } from "../firebase";
 import { setDoc, doc, collection } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
     const [ user, setUser ] = useState({
@@ -46,6 +46,7 @@ const Register = () => {
                 <input type="password" name="password" onChange={handleChange} value={user.password}/>
             </section>
             <button>Create Account</button>
+            <Link to="/login"><p>Already have an account?</p></Link>
         </form>
     )
 }

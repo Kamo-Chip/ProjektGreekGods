@@ -5,10 +5,13 @@ import Home from "./Home";
 import CreateWorkout from './CreateWorkout';
 import Login from './Login';
 import WorkoutDetails from './WorkoutDetails';
+import Nav from "./Nav";
+import Progress from "./Progress";
+import Settings from "./Settings";
+import Comment from "./Comment";
 
 const App = () => {
   return (
-      <div>
           <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Register/>}/>
@@ -16,9 +19,12 @@ const App = () => {
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/home/:title" element={<WorkoutDetails/>}/>
                 <Route path="/createWorkout" element={<CreateWorkout/>}/>
+                <Route path="/progress" element={<Progress/>}/>
+                <Route path="/settings" element={<Settings/>}/>
+                <Route path="/comment/:title" element={<Comment/>}/>
             </Routes>
+            <Nav/>
           </BrowserRouter>
-      </div>
   )
 }
 export default App;

@@ -36,9 +36,11 @@ const CreateWorkout = () => {
     
         let workouts = data.data().workouts;
         workouts.push(workout);
+        
     
         await updateDoc(doc(db, auth.currentUser.uid, "routines"), {
             workouts: workouts,
+            
         })
         .catch(err => console.log(err));
 
@@ -52,24 +54,27 @@ const CreateWorkout = () => {
     }
 
     return (
-        <form className="frm-create-workout">
-            <section>
-                <label htmlFor="title">Title</label>
-                <input type="text" name="title" placeholder="Enter workout name e.g)Push" onChange={handleChange} value={workout.title}/>
-            </section>
-            <section>
-                <label htmlFor="day">Day</label>
-                <input type="text" name="day" placeholder="Monday" onChange={handleChange} value={workout.day}/>
-            </section>
-            <section>
-                <p>Enter exercises</p>
-                <div className="exercise-container">
-                    {workout.exercises.map((excercise, index) => <Exercise handleExerciseChange={handleExerciseChange} setWorkout={setWorkout} id={index}/>)}
-                </div>
-                <button onClick={addExercise}>Add exercise</button>
-            </section>
-            <button onClick={handleSubmit}>Create Workout</button>
-        </form>
+        <>
+            <h1 className="page-header">Enter workout details</h1>
+            <form className="frm-create-workout">
+                <section>
+                    <label htmlFor="title">Title</label>
+                    <input type="text" name="title" placeholder="Enter workout name e.g)Push" onChange={handleChange} value={workout.title}/>
+                </section>
+                <section>
+                    <label htmlFor="day">Day</label>
+                    <input type="text" name="day" placeholder="Monday" onChange={handleChange} value={workout.day}/>
+                </section>
+                <section>
+                    <p>Enter exercises</p>
+                    <div className="exercise-container">
+                        {workout.exercises.map((excercise, index) => <Exercise handleExerciseChange={handleExerciseChange} setWorkout={setWorkout} id={index}/>)}
+                    </div>
+                    <button onClick={addExercise}>Add exercise</button>
+                </section>
+                <button onClick={handleSubmit}>Create Workout</button>
+            </form>
+        </>
     )
 }
 

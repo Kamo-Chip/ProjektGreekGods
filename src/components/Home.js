@@ -26,6 +26,7 @@ const Home = () => {
     }
     return (
         <div className="home">
+            <h1 className="page-header">Routine</h1>
             <div className="workouts-container">
                 {workouts.map((workout, index) => <Workout workout={workout}/>)}
             </div>
