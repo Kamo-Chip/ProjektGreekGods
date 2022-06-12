@@ -5,17 +5,81 @@
 body {
   display: flex;
   flex-direction: column;
-  align-items: center;
   min-height: 100vh;
   width: 100vw;
 }
 
-.frm-create-workout {
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.page-header {
+  text-decoration: underline;
+  text-align: center;
+}
+
+form {
+  justify-self: center;
+  width: fit-content
+}
+
+button {
+  width: fit-content;
+  align-self: center;
+}
+
+#root {
   display: flex;
   flex-direction: column;
+  width: 100vw;
+}
+
+/*Home*/
+
+.home {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.workouts-container {
   width: 95vw;
 }
 
+/*Workout*/
+
+.workout {
+  border-radius: 20px;
+  padding: 0 1em .5em 1em;
+  margin-bottom: 1em;
+}
+
+/*Create Workout*/
+
+.frm-create-workout {
+  align-self: center;
+}
+
+.frm-create-workout section {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+
+/*Workout details*/
+
+.workout-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.exercise-details {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  padding-left: 1em;
+}
 .exercise-container {
   margin-bottom: 1em;
 }
@@ -35,3 +99,14 @@ body {
 .workout {
   border-style: solid;
 }
+/*Navigation*/
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  justify-content: space-around;
+}
+
