@@ -21,6 +21,7 @@ const Register = () => {
 
             await setDoc(doc(db, result.user.uid, "routines"), {
                 workouts: [],
+                workoutHistory: [],
             });
 
             navigate("/home");
