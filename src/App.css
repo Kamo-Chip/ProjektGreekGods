@@ -77,8 +77,14 @@ button {
 
 .exercise-details {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr;
+  grid-template-columns: 3fr repeat(4, 1fr);
   padding-left: 1em;
+}
+
+.exercise-details input {
+  width: 2.5rem;
+  color: #000;
+
 }
 .exercise-container {
   margin-bottom: 1em;
