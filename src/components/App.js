@@ -6,9 +6,10 @@ import CreateWorkout from './CreateWorkout';
 import Login from './Login';
 import WorkoutDetails from './WorkoutDetails';
 import Nav from "./Nav";
-import Progress from "./Progress";
+import ProgressContainer from "./ProgressContainer";
 import Settings from "./Settings";
 import Comment from "./Comment";
+import ProgressWorkoutTab from './ProgressWorkoutTab';
 
 const App = () => {
   return (
@@ -19,9 +20,10 @@ const App = () => {
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/home/:title" element={<WorkoutDetails/>}/>
                 <Route path="/createWorkout" element={<CreateWorkout/>}/>
-                <Route path="/progress" element={<Progress/>}/>
+                <Route path="/progress" element={<ProgressContainer/>}/>
                 <Route path="/settings" element={<Settings/>}/>
                 <Route path="/comment/:title" element={<Comment/>}/>
+                <Route path="/progress/:title" element={<ProgressWorkoutTab/>}/>
             </Routes>
             <Nav/>
           </BrowserRouter>
