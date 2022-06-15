@@ -2,11 +2,18 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color: #21565c;
+  --font-color: #b5b0b3;
+}
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100vw;
+  background-color: var(--bg-color);
+  color: var(--font-color);
 }
 
 a {
@@ -37,7 +44,7 @@ button {
 
 /*Home*/
 
-.home {
+.routines {
   width: 100vw;
   display: flex;
   flex-direction: column;

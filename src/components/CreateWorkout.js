@@ -78,7 +78,7 @@ const CreateWorkout = () => {
     )
 }
 
-const Exercise = ({ setWorkout, id, handleExerciseChange }) => {
+const Exercise = ({ id, handleExerciseChange }) => {
     return (
         <div id={id} className="exercise">
             <input onChange={handleExerciseChange} className="exercise-name" name="name" type="text" placeholder="Name of exercise"/>

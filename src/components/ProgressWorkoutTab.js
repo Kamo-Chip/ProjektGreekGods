@@ -1,15 +1,41 @@
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { Timestamp } from "firebase/firestore";
 
-const ProgressWorkoutTab = (props) => {
-    //Add props to link
-    const {title} = useParams();
+const ProgressWorkoutTab = () => {
+    const [ history, setHistory ] = useState([]);
+    const location = useLocation();
+    const { title } = useParams();
 
-    const stateValue = useLocation().state;
+    useEffect(() => {
+        setHistory(location.state.keys);
+    }, [history]);
 
-    console.log(stateValue)
+    const formatDate = (date) => {
+        const dateTokens = date.toString().split(" ");
+
+        const day = dateTokens[2];
+        const month = dateTokens[1];
+        
+        return `Completed on: ${day} ${month}`;
+    }
+
+    const getVolume = () => {
+        //weight * reps * sets
+    }
+
     return (
         <div>
-            <p>Progress tab</p>
+            <h1 className="page-header">{`${title} history`}</h1>
+            {history.map(element => {
+                return (
+                    <Link to={`/progress/${title}/${element.id}`} state={{element}}>
+                        <div className="workout">
+                        {(formatDate(new Timestamp(element.dateCompleted.seconds, element.dateCompleted.nanoseconds).toDate()))}
+                        </div>
+                    </Link>
+                )
+            }) }
         </div>
     )
 }

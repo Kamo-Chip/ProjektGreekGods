@@ -7,14 +7,15 @@ const Comment = ({workout}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        workout.comment = document.querySelector(".comment").value;
-        workout.dateCompleted = new Date();
-
+        
         const data = await getDoc(doc(db, auth.currentUser.uid, "routines"))
         .catch(err => console.log(err));
 
         let workoutHistory = data.data().workoutHistory;
+
+        workout.comment = document.querySelector(".comment").value;
+        workout.dateCompleted = new Date();
+        workout.id = `workout${workoutHistory.length - 1}`
 
         workoutHistory.push(workout);
 

@@ -40,9 +40,8 @@ const Progress = ({ workoutHistory }) => {
         <div>
             <h1 className="page-header">Workout History</h1>
             {Object.keys(groupedWorkoutHistory).map(element => {
-                // console.log(Object.values(groupedWorkoutHistory[element]))
                 return (
-                    <Link to={{pathname:`/progress/${element}`, state: {keys: Object.values(groupedWorkoutHistory[element])}}}>
+                    <Link to={`/progress/${element}`} state={{keys: Object.values(groupedWorkoutHistory[element])}}>
                         <div className="workout">
                             <p>{element}</p>
                         </div>
