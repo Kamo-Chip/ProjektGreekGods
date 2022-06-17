@@ -3,8 +3,12 @@
 }
 
 :root {
-  --bg-color: #21565c;
-  --font-color: #b5b0b3;
+  --bg-color: #121212;
+  --color-1: #fff;
+  --color-2: #3700B3;
+  --color-3: #BB86FC;
+  --color-4: #CF6679;
+  --color-5: #03DAC5;
 }
 
 body {
@@ -13,7 +17,8 @@ body {
   min-height: 100vh;
   width: 100vw;
   background-color: var(--bg-color);
-  color: var(--font-color);
+  color: var(--color-1);
+  overflow: scroll;
 }
 
 a {
@@ -24,6 +29,7 @@ a {
 .page-header {
   text-decoration: underline;
   text-align: center;
+  text-decoration-color: var(--color-5);
 }
 
 form {
@@ -31,9 +37,23 @@ form {
   width: fit-content
 }
 
+input {
+  margin-bottom: 1em;
+  border: none;
+}
+
+input:focus {
+ outline: none;
+}
+
 button {
   width: fit-content;
   align-self: center;
+  font-size: 1.5rem;
+  background-color: var(--color-5);
+  border: none;
+  border-radius: 5px;
+  color: #000;
 }
 
 #root {
@@ -42,9 +62,32 @@ button {
   width: 100vw;
 }
 
-/*Home*/
+/* Forms */
 
-.routines {
+.frm-register, .frm-login {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  align-items: center;
+}
+
+.frm-register section, .frm-login section {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.frm-register a p {
+  color: var(--color-1);
+}
+
+.frm-register button, .frm-login button {
+  margin-top: 1em;
+}
+/*Routines*/
+
+.routines, .progress {
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -55,18 +98,49 @@ button {
   width: 95vw;
 }
 
+.btn-edit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-right: .5em;
+}
+
 /*Workout*/
 
 .workout {
-  border-radius: 20px;
-  padding: 0 1em .5em 1em;
+  border-style: none;
+  border-radius: 5px; 
+  border-color: #fff;
+  padding: .2em 1em .5em 1em;
+  background-color: var(--color-2);
+  color: var(--color-1);
   margin-bottom: 1em;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+.workout-container {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.btn-delete-workout {
+ align-self: center;
+ justify-self: center;
+ margin-right: .5em;
 }
 
 /*Create Workout*/
 
 .frm-create-workout {
+  display: flex;
+  flex-direction: column;
   align-self: center;
+  width: 80vw;
 }
 
 .frm-create-workout section {
@@ -74,44 +148,55 @@ button {
   grid-template-columns: 1fr 3fr;
 }
 
+.frm-create-workout button {
+  align-self: center;
+  justify-self: center;
+  margin-bottom: 1em;
+}
 
+.add-exercise-container {
+  display: grid;
+  grid-template-columns: auto auto;
+}
 /*Workout details*/
 
-.workout-details {
+.workout-details-container {
   display: flex;
   flex-direction: column;
 }
 
 .exercise-details {
-  display: grid;
-  grid-template-columns: 3fr repeat(4, 1fr);
-  padding-left: 1em;
+  display: flex;
 }
 
 .exercise-details input {
   width: 2.5rem;
-  color: #000;
-
 }
+
 .exercise-container {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 1em;
 }
 
+.exercise-container .add{
+  align-self: flex-start;
+}
+
 .exercise {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
+  justify-self: center;
+  height: fit-content;
 }
 
 .exercise input {
   width: 50px;
 }
 .exercise-name{
-  width: 150px !important;
+  width: 130px !important;
 }
 
-.workout {
-  border-style: solid;
-}
 /*Navigation*/
 
 .navigation {
@@ -121,5 +206,84 @@ button {
   bottom: 0;
   width: 100vw;
   justify-content: space-around;
+  background-color: var(--color-2);
+  padding-top: .5em;
 }
 
+.navigation div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation p {
+  color: var(--color-1);
+  margin-top: 0;
+}
+
+/* Progress */
+.improved-workout, .no-progress-workout, .lost-progress-workout {
+  background-color: rgb(58, 173, 58);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.improved-workout::after{
+  content: url("./images/upTrend.svg");
+}
+
+.no-progress-workout {
+  background-color: #969696;
+}
+
+.no-progress-workout::after {
+  content: url("./images/flatTrend.svg");
+}
+.lost-progress-workout {
+  background-color: var(--color-4);
+}
+
+.lost-progress-workout::after {
+  content: url("./images/downTrend.svg");
+}
+
+/*Comment*/
+.comment-container {
+  z-index: 15;
+  height: 580px;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-2);
+  position: absolute;
+  margin-left: 1.3em;
+  margin-top: 2em;
+  overflow-y: scroll;
+}
+
+.comment {
+  height: 200px;
+  width: 90%;
+  font-size: 1.2rem;
+}
+
+/*Miscellaneous*/
+.title-header {
+  text-decoration: underline;
+  text-decoration-color: var(--color-5);
+  text-decoration-thickness: 2px;
+}
+
+.key-item {
+  height: 1rem;
+  width: 1rem;
+  background-color: #fff;
+}
+
+.error {
+  color: var(--color-4);
+  text-align: center;
+}
