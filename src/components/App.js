@@ -11,21 +11,32 @@ import Settings from "./Settings";
 import Comment from "./Comment";
 import ProgressWorkoutTab from './ProgressWorkoutTab';
 import WorkoutHistoryDetail from './WorkoutHistoryDetail';
+import PrivateRoute from "./PrivateRoute";
+import { auth } from "../firebase";
+import { useState } from 'react';
 
 const App = () => {
+
+  // const [ user, setUser ] = useState(auth.currentUser);
+  // useState(() => {
+  //   console.log(auth.currentUser)
+  // }, [user]);
+
   return (
           <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/home" element={<Routines/>}/>
-                <Route path="/home/:title" element={<WorkoutDetailsContainer/>}/>
-                <Route path="/createWorkout" element={<CreateWorkout/>}/>
-                <Route path="/progress" element={<ProgressContainer/>}/>
-                <Route path="/settings" element={<Settings/>}/>
-                <Route path="/comment/:title" element={<Comment/>}/>
-                <Route path="/progress/:title" element={<ProgressWorkoutTab/>}/>
-                <Route path="/progress/:title/:id" element={<WorkoutHistoryDetail/>}/>
+                <Route element={<PrivateRoute/>}>
+                  <Route path="/home" element={<Routines/>}/>
+                  <Route path="/home/:title" element={<WorkoutDetailsContainer/>}/>
+                  <Route path="/createWorkout" element={<CreateWorkout/>}/>
+                  <Route path="/progress" element={<ProgressContainer/>}/>
+                  <Route path="/settings" element={<Settings/>}/>
+                  <Route path="/comment/:title" element={<Comment/>}/>
+                  <Route path="/progress/:title" element={<ProgressWorkoutTab/>}/>
+                  <Route path="/progress/:title/:id" element={<WorkoutHistoryDetail/>}/>
+                </Route>
             </Routes>
             <Nav/>
           </BrowserRouter>

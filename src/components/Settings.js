@@ -1,7 +1,7 @@
 const Settings = () => {
     return (
         <div>
-            Settings
+            <h1 className="page-header">Settings</h1>
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {   
     const [ user, setUser ] = useState({
@@ -9,15 +9,32 @@ const Login = () => {
         password: "",
     });
 
+    const [ details, setDetails ] = useState({
+        loading: false,
+    });
+
+    const [error, setError ] = useState(null)
+
+    useEffect(() => {
+
+    }, [details]);
+
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        signInWithEmailAndPassword(auth, user.email, user.password)
-        .catch(err => console.log(err));
-
-        navigate("/home");
+        setError(null);
+        setDetails({...details, loading: true});
+        
+        try{
+            await signInWithEmailAndPassword(auth, user.email, user.password);
+    
+            navigate("/home");
+        }catch(err){
+            setDetails({...details, error: err.message});
+            setError(err.message);
+            setDetails({...details, loading: false});
+        }
     }
 
     const handleChange = (e) => {
@@ -26,17 +43,19 @@ const Login = () => {
         setUser({...user, [e.target.name]: e.target.value});
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Sign in</h2>
+        <form className="frm-login" onSubmit={handleSubmit}>
+            <h1 className="page-header">Sign in</h1>
             <section>
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" onChange={handleChange} value={user.email}/>
+                <label htmlFor="email">Email:</label>
+                <input type="email" name="email" onChange={handleChange} value={user.email} required={true}/>
             </section>
             <section>
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" onChange={handleChange} value={user.password}/>
+                <label htmlFor="password">Password:</label>
+                <input type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
             </section>
-            <button>Sign in</button>
+            <button disabled={details.loading}>{details.loading ? "Loading..." : "Sign in"}</button>
+            <Link to="/"><p style={{color: "#fff"}}>Don't have an account?</p></Link>
+            { error ? <p className="error">{error}</p> : null}
         </form>
     )
 }

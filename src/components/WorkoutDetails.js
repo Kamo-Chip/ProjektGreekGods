@@ -1,9 +1,9 @@
 import ExerciseInWorkout from "./ExerciseInWorkout";
 
-const WorkoutDetails = ({workout}) => {
+const WorkoutDetails = ({workout, setWorkout }) => {
     return (
-        <div>
-            {workout.exercises.map((exercise, index) => <ExerciseInWorkout exercise={exercise} id={index}/>)}
+        <div className="workout-details">
+            {workout.exercises.map((exercise, index) => <ExerciseInWorkout setWorkout={setWorkout} workout={workout} exercise={exercise} id={index}/>)}
         </div>
     );
 }

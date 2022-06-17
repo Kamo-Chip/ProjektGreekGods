@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { db, auth } from "../firebase";
 import { updateDoc, doc, getDoc } from "firebase/firestore";
+import AddIcon from "../images/add.svg";
 
 const CreateWorkout = () => {
     const [ workout, setWorkout ] = useState({
@@ -35,9 +36,9 @@ const CreateWorkout = () => {
         .catch(err => console.log(err));
     
         let workouts = data.data().workouts;
+
         workouts.push(workout);
         
-    
         await updateDoc(doc(db, auth.currentUser.uid, "routines"), {
             workouts: workouts,
             
@@ -55,24 +56,27 @@ const CreateWorkout = () => {
 
     return (
         <>
-            <h1 className="page-header">Enter workout details</h1>
-            <form className="frm-create-workout">
+            <h1 className="page-header">Create Workout</h1>
+            <form onSubmit={handleSubmit} className="frm-create-workout">
                 <section>
                     <label htmlFor="title">Title</label>
-                    <input type="text" name="title" placeholder="Enter workout name e.g)Push" onChange={handleChange} value={workout.title}/>
+                    <input type="text" name="title" placeholder="Legs" onChange={handleChange} value={workout.title} required={true}/>
                 </section>
                 <section>
                     <label htmlFor="day">Day</label>
-                    <input type="text" name="day" placeholder="Monday" onChange={handleChange} value={workout.day}/>
+                    <input type="text" name="day" placeholder="Tuesday" onChange={handleChange} value={workout.day} required={true}/>
                 </section>
-                <section>
-                    <p>Enter exercises</p>
+                <section className="add-exercise-container">
+                    
+                    <p style={{marginTop: "0"}}>Exercises</p>
+                   
                     <div className="exercise-container">
                         {workout.exercises.map((excercise, index) => <Exercise handleExerciseChange={handleExerciseChange} setWorkout={setWorkout} id={index}/>)}
+                        <img src={AddIcon} onClick={addExercise} className="add" alt="Add"/>
                     </div>
-                    <button onClick={addExercise}>Add exercise</button>
+                    
                 </section>
-                <button onClick={handleSubmit}>Create Workout</button>
+                <button>Create</button>
             </form>
         </>
     )
@@ -81,9 +85,9 @@ const CreateWorkout = () => {
 const Exercise = ({ id, handleExerciseChange }) => {
     return (
         <div id={id} className="exercise">
-            <input onChange={handleExerciseChange} className="exercise-name" name="name" type="text" placeholder="Name of exercise"/>
-            <input onChange={handleExerciseChange} type="number" name="sets" placeholder="sets"/>
-            <input onChange={handleExerciseChange} type="number" name="reps" placeholder="reps"/>
+            <input onChange={handleExerciseChange} className="exercise-name" name="name" type="text" placeholder="Name of exercise" required={true}/>
+            <input onChange={handleExerciseChange} type="number" name="sets" placeholder="sets" required={true}/>
+            <input onChange={handleExerciseChange} type="number" name="reps" placeholder="reps" required={true}/>
         </div>
     )
 }

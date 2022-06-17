@@ -37,17 +37,20 @@ const Progress = ({ workoutHistory }) => {
     groupWorkouts();
 
     return (
-        <div>
-            <h1 className="page-header">Workout History</h1>
-            {Object.keys(groupedWorkoutHistory).map(element => {
-                return (
-                    <Link to={`/progress/${element}`} state={{keys: Object.values(groupedWorkoutHistory[element])}}>
-                        <div className="workout">
-                            <p>{element}</p>
-                        </div>
-                    </Link>
-                )
-            })}
+        <div className="progress">
+            <div className="workouts-container">
+                <h1 className="page-header">Workout History</h1>
+                { workoutHistory.length === 0 && <p style={{textAlign: "center"}}>Past workout data will be show here</p> }
+                {Object.keys(groupedWorkoutHistory).map(element => {
+                    return (
+                        <Link to={`/progress/${element}`} state={{keys: Object.values(groupedWorkoutHistory[element])}}>
+                            <div className="workout">
+                                <p>{element}</p>
+                            </div>
+                        </Link>
+                    )
+                })}
+            </div>
         </div>
     )
 }
