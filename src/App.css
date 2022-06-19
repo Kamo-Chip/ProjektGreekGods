@@ -9,6 +9,7 @@
   --color-3: #BB86FC;
   --color-4: #CF6679;
   --color-5: #03DAC5;
+  --color-6: #363636;
 }
 
 body {
@@ -18,7 +19,7 @@ body {
   width: 100vw;
   background-color: var(--bg-color);
   color: var(--color-1);
-  overflow: scroll;
+  overflow: hidden;
 }
 
 a {
@@ -112,7 +113,7 @@ button {
   border-radius: 5px; 
   border-color: #fff;
   padding: .2em 1em .5em 1em;
-  background-color: var(--color-2);
+  background-color: var(--color-6);
   color: var(--color-1);
   margin-bottom: 1em;
 }
@@ -228,26 +229,27 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 50px;
 }
 
-.improved-workout::after{
+/* .improved-workout::after{
   content: url("./images/upTrend.svg");
-}
+} */
 
 .no-progress-workout {
   background-color: #969696;
 }
-
+/* 
 .no-progress-workout::after {
   content: url("./images/flatTrend.svg");
-}
+} */
 .lost-progress-workout {
   background-color: var(--color-4);
 }
-
+/* 
 .lost-progress-workout::after {
   content: url("./images/downTrend.svg");
-}
+} */
 
 /*Comment*/
 .comment-container {
@@ -257,11 +259,12 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-2);
+  background-color: var(--color-6);
   position: absolute;
   margin-left: 1.3em;
   margin-top: 2em;
   overflow-y: scroll;
+  border-radius: 5px;
 }
 
 .comment {
