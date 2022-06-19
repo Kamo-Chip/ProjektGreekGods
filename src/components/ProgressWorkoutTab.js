@@ -48,7 +48,9 @@ const ProgressWorkoutTab = () => {
                                 element.hasImproved > 0 ? "improved-workout" 
                                 : element.hasImproved === 0 ? "no-progress-workout"
                                 : "lost-progress-workout"}`}>
-                            {(formatDate(new Timestamp(element.dateCompleted.seconds, element.dateCompleted.nanoseconds).toDate()))}
+                            <p>{(formatDate(new Timestamp(element.dateCompleted.seconds, element.dateCompleted.nanoseconds).toDate()))}</p>
+                            {element.hasOwnProperty("improvedBy") ? <p>{element.hasImproved > 0 ? "+" : null}{((Number)(element.improvedBy)).toFixed(2)}%</p>
+                            : !element.hasImproved ? <p>+0.00%</p> : null}
                             </div>
                         </Link>
                     )

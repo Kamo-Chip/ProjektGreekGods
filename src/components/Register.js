@@ -35,6 +35,11 @@ const Register = () => {
                 workoutHistory: [],
             });
             
+            await setDoc(doc(db, result.user.uid, "settings"), {
+                theme: "dark",
+                units: "metric",
+            });
+
             navigate("/home");
         }catch(err){
             setLoading(false);

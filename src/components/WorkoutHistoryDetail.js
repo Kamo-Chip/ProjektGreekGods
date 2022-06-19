@@ -1,7 +1,9 @@
 import { useLocation, useParams } from "react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import formatDate from "../utils/formatDate";
 import { Timestamp } from "@firebase/firestore";
+import { getElementError } from "@testing-library/react";
+import { UnitsContext } from "./units-context";
 
 const WorkoutHistoryDetail = () => {
     const location = useLocation();
@@ -11,14 +13,19 @@ const WorkoutHistoryDetail = () => {
         setWorkout(location.state.element);
     }, [workout]);
 
+    const units = useContext(UnitsContext);
+
     return (
         <div style={{
             display: "flex",
             flexDirection: "column",
+            overflowY: "scroll",
+            height: "calc(100vh - 78px)",
+            paddingBottom: "1em"
         }}>
-            {console.log(workout)}
             <h1 className="page-header">Workout Recap</h1>
-            <small style={{alignSelf:"center"}}>{`${formatDate(new Timestamp(workout.dateCompleted.seconds, workout.dateCompleted.nanoseconds).toDate())}`}</small>
+            <small style={{alignSelf:"center"}}>{`Completed on: ${formatDate(new Timestamp(workout.dateCompleted.seconds, workout.dateCompleted.nanoseconds).toDate())}`}</small>
+            <small style={{alignSelf: "center", marginTop: "1em"}}>{`Volume: ${workout.volume} ${units.weight}`}</small>
             <div style={{
                 paddingLeft: ".8em"
             }}>
@@ -34,19 +41,20 @@ const WorkoutHistoryDetail = () => {
 
                 }}>
                     <p style={{
-                        width: "58%",
+                        width: "40%",
                     }}>Exercise</p>
                     <div style={{
                         display: "flex",
                         flexDirection: "row",
                         justifyContent: "space-between",
-                        width: "42%"
+                        width: "60%"
                     }}>
                         <p>Sets</p>
                         <p style={{
-                            marginLeft: "1.5em"
+                            marginLeft: "1em"
                         }}>Reps</p>
-                        <p>Wt</p>
+                        <p>Wt ({units.weight})</p>
+                        <p>Vol. ({units.weight})</p>
                     </div>
                 </div>
                 {workout.exercises && workout.exercises.map(element => {
@@ -55,19 +63,24 @@ const WorkoutHistoryDetail = () => {
                             justifyContent: "space-between"
                         }}>
                             <p style={{
-                                width: "60%"
+                                width: "35%"
                             }}>{element.name}</p>
                             <div style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                width: "40%",
-                                justifyContent: "space-between",
-                                paddingRight: "0.8em",
+                                // display: "flex",
+                                // flexDirection: "row",
+                                // width: "50%",
+                                // justifyContent: "space-between",
+                                display: "grid",
+                                gridTemplateColumns: "1fr 10px repeat(3, 1fr)",
+                                width: "65%",
+                                justifyContent: "center",
+                             
                             }}>
-                                <p>{element.sets}</p>
-                                <p>x</p>
-                                <p>{element.reps}</p>
-                                <p>{element.weight}</p>
+                                <p style={{textAlign: "center"}}>{element.sets}</p>
+                                <p style={{textAlign: "center"}}>x</p>
+                                <p style={{textAlign: "center"}}>{element.reps}</p>
+                                <p style={{textAlign: "center"}}>{element.weight}</p>
+                                <p style={{textAlign: "center"}}>{element.volume}</p>
                             </div>
                         </div>
                         )

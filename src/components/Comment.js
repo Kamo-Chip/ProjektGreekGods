@@ -67,10 +67,13 @@ const Comment = ({workout}) => {
             toCompare = history[i].volume;
             if(workout.volume > toCompare && workout.volume > history[0].volume){
                 workout.hasImproved = 1;
+                workout.improvedBy = ((workout.volume - toCompare) / toCompare) * 100;
             }else if(workout.volume === toCompare){
                 workout.hasImproved = 0;
+                workout.improvedBy = 0;
             }else{
                 workout.hasImproved = -1;
+                workout.improvedBy = ((workout.volume - toCompare) / toCompare) * 100;
             }
         }
     }

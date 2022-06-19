@@ -1,13 +1,15 @@
 import { useParams } from "react-router-dom";
 import { db, auth } from "../firebase";
 import { getDoc, doc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Comment from "./Comment";
 import WorkoutDetails from "./WorkoutDetails";
+import { UnitsContext } from "./units-context";
 
 const WorkoutDetailsContainer = () => {
     const { title } = useParams();
     const [ workout, setWorkout ] = useState({});
+    const units = useContext(UnitsContext);
 
     useEffect(() => {
         getWorkout();
@@ -87,11 +89,11 @@ const WorkoutDetailsContainer = () => {
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "space-between",
-                      paddingRight: "1.5em",
+                      paddingRight: "1em",
                   }}>
                     <p>Sets</p>
                     <p style={{paddingLeft: "2em"}}>Reps</p>
-                    <p>Weight</p>
+                    <p>Wt ({units.weight})</p>
                   </div>
               </div>
             {workout.title && 

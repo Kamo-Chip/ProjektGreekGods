@@ -13,7 +13,8 @@ import ProgressWorkoutTab from './ProgressWorkoutTab';
 import WorkoutHistoryDetail from './WorkoutHistoryDetail';
 import PrivateRoute from "./PrivateRoute";
 import { auth } from "../firebase";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { UnitsContext, units } from './units-context';
 
 const App = () => {
 
@@ -21,8 +22,14 @@ const App = () => {
   // useState(() => {
   //   console.log(auth.currentUser)
   // }, [user]);
+  const [ unit, setUnit ] = useState(units.metric);
+
+  const setUnits = (newUnits) => {
+    setUnit(newUnits)
+  }
 
   return (
+    <UnitsContext.Provider value={unit}>
           <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Register/>}/>
@@ -32,7 +39,7 @@ const App = () => {
                   <Route path="/home/:title" element={<WorkoutDetailsContainer/>}/>
                   <Route path="/createWorkout" element={<CreateWorkout/>}/>
                   <Route path="/progress" element={<ProgressContainer/>}/>
-                  <Route path="/settings" element={<Settings/>}/>
+                  <Route path="/settings" element={<Settings setUnits={setUnits}/>}/>
                   <Route path="/comment/:title" element={<Comment/>}/>
                   <Route path="/progress/:title" element={<ProgressWorkoutTab/>}/>
                   <Route path="/progress/:title/:id" element={<WorkoutHistoryDetail/>}/>
@@ -40,6 +47,7 @@ const App = () => {
             </Routes>
             <Nav/>
           </BrowserRouter>
+    </UnitsContext.Provider>
   )
 }
 export default App;
