@@ -28,11 +28,11 @@ const WorkoutHistoryDetail = () => {
             <div style={{
                 paddingLeft: ".8em"
             }}>
-                <h2>Comment</h2>
+                <h2 className="page-header">Comment</h2>
                 <p>{workout.comment}</p>
             </div>
             <div style={{paddingLeft: ".8em", paddingRight: ".8em"}}>
-                <h2>Performance</h2>
+                <h2 className="page-header">Performance</h2>
                 <div className="title-header" style={{
                     display: "flex",
                     flexDirection: "row",
@@ -86,7 +86,7 @@ const WorkoutHistoryDetail = () => {
                     })}
             </div>
             <div style={{display: "flex", flexDirection: "column"}}>
-                <h2 style={{paddingLeft: ".8em"}}>Progress Pic</h2>
+                <h2 className="page-header" style={{paddingLeft: ".8em"}}>Progress Pic</h2>
                 <img style={{width: "90%", alignSelf: "center"}} src={workout.progressPic} alt="Pic not provided"/>
             </div>
 
