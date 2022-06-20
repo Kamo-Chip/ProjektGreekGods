@@ -9,17 +9,22 @@ const Login = () => {
         password: "",
     });
 
+
+    const navigate = useNavigate();
+
     const [ details, setDetails ] = useState({
         loading: false,
     });
 
     const [error, setError ] = useState(null)
 
+    // useEffect(() => {
+    //     navigate("/login");
+    // },[])
     useEffect(() => {
 
     }, [details]);
 
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,6 +32,7 @@ const Login = () => {
         setDetails({...details, loading: true});
         
         try{
+            console.log(user);
             await signInWithEmailAndPassword(auth, user.email, user.password);
     
             navigate("/home");

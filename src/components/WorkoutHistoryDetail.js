@@ -19,8 +19,7 @@ const WorkoutHistoryDetail = () => {
         <div style={{
             display: "flex",
             flexDirection: "column",
-            overflowY: "scroll",
-            height: "calc(100vh - 78px)",
+            width: "100%",
             paddingBottom: "1em"
         }}>
             <h1 className="page-header">Workout Recap</h1>
@@ -86,9 +85,9 @@ const WorkoutHistoryDetail = () => {
                         )
                     })}
             </div>
-            <div style={{paddingLeft: ".8em"}}>
-                <h2>Progress Pic</h2>
-                <img style={{width: "400px"}} src={workout.progressPic} alt="Pic not provided"/>
+            <div style={{display: "flex", flexDirection: "column"}}>
+                <h2 style={{paddingLeft: ".8em"}}>Progress Pic</h2>
+                <img style={{width: "90%", alignSelf: "center"}} src={workout.progressPic} alt="Pic not provided"/>
             </div>
 
 
