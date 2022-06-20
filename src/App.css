@@ -43,6 +43,7 @@ input {
   margin-bottom: 1em;
   border: none;
   font-size: 1rem;
+  height: 35px;
 }
 
 input:focus {
