@@ -16,11 +16,10 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  max-height: 100vh;
   width: 100vw;
   background-color: var(--bg-color);
   color: var(--color-1);
-  overflow: scroll;
+  overflow-y: scroll;
   overflow-x: hidden;
 }
 
