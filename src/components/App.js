@@ -15,6 +15,7 @@ import PrivateRoute from "./PrivateRoute";
 import { auth } from "../firebase";
 import { useState, useEffect } from 'react';
 import { UnitsContext, units } from './units-context';
+import { ThemeContext, themes } from './theme-context';
 
 const App = () => {
 
@@ -24,8 +25,14 @@ const App = () => {
   // }, [user]);
   const [ unit, setUnit ] = useState(units.metric);
 
+  const [ theme, setTheme ] = useState(themes.light);
+
   const setUnits = (newUnits) => {
     setUnit(newUnits)
+  }
+
+  const setThemes = (newUnits) => {
+    setTheme(newUnits)
   }
 
   return (
@@ -39,7 +46,7 @@ const App = () => {
                   <Route path="/home/:title" element={<WorkoutDetailsContainer/>}/>
                   <Route path="/createWorkout" element={<CreateWorkout/>}/>
                   <Route path="/progress" element={<ProgressContainer/>}/>
-                  <Route path="/settings" element={<Settings setUnits={setUnits}/>}/>
+                  <Route path="/settings" element={<Settings setUnits={setUnits} setTheme={setThemes} theme={theme}/>}/>
                   <Route path="/comment/:title" element={<Comment/>}/>
                   <Route path="/progress/:title" element={<ProgressWorkoutTab/>}/>
                   <Route path="/progress/:title/:id" element={<WorkoutHistoryDetail/>}/>

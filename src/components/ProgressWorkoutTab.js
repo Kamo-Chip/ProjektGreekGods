@@ -40,6 +40,10 @@ const ProgressWorkoutTab = () => {
                 <span style={{paddingLeft: ".2em"}}>No change</span>
                 </div>
             </div>
+            <div style={{display: "flex", flexDirection: "row", padding: "0 1em", justifyContent: "space-between", width: "100%"}}>
+                <p className="page-header">Date Completed</p>
+                <p className="page-header">&Delta; Volume</p>
+            </div>
             <div style={{width: "95vw"}}>
                 {history.map(element => {
                     return (

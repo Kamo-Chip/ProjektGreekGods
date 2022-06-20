@@ -1,15 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=GFS+Neohellenic&display=swap');
+
 * {
   box-sizing: border-box;
 }
 
 :root {
-  --bg-color: #121212;
-  --color-1: #fff;
-  --color-2: #3700B3;
+  --bg-color: #F5F5F5F5;
+  --color-1: #000;
+  --color-2: #BD9B16;
   --color-3: #BB86FC;
   --color-4: #CF6679;
-  --color-5: #03DAC5;
-  --color-6: #363636;
+  --color-5: #FCC200;
+  --color-6: #CFB197;
 }
 
 body {
@@ -33,13 +35,16 @@ body {
 
 a {
   text-decoration: none;
-  color: #000;
+  color: var(--color-1);
 }
 
 .page-header {
   text-decoration: underline;
+  text-decoration-thickness: 3px;
+  font-weight: bold;
   text-align: center;
   text-decoration-color: var(--color-5);
+  font-family: "Neo Hellenic", sans-serif;
 }
 
 form {
@@ -49,9 +54,10 @@ form {
 
 input {
   margin-bottom: 1em;
-  border: none;
+  border: solid var(--color-1) 1px;
   font-size: 1rem;
   height: 35px;
+  border-radius: 5px;
 }
 
 input:focus {
@@ -66,6 +72,7 @@ button {
   border: none;
   border-radius: 5px;
   color: #000;
+  box-shadow: var(--color-1) 3px 3px;
 }
 
 /* Forms */
@@ -171,6 +178,12 @@ button {
   flex-direction: column;
 }
 
+.workout-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .exercise-details {
   display: flex;
 }
@@ -183,6 +196,8 @@ button {
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
+  border-bottom: solid var(--color-1) 2px;
+  width: 95%;
 }
 
 .exercise-container .add{
@@ -277,11 +292,40 @@ button {
   font-size: 1.2rem;
 }
 
+/* Settings */
+.settings-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 1em;
+  border-top: solid var(--color-6) 3px;
+  border-bottom: solid var(--color-6) 3px;
+}
+
+.settings-item-details {
+  display: flex;
+  flex-direction: row;
+  width: 45%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-item-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.settings-item-no-bottom {
+  border-bottom: none !important;
+}
 /*Miscellaneous*/
 .title-header {
   text-decoration: underline;
   text-decoration-color: var(--color-5);
   text-decoration-thickness: 2px;
+  font-weight: bold;
 }
 
 .key-item {

@@ -44,30 +44,31 @@ const WorkoutDetailsContainer = () => {
         document.querySelector(".workout-details-container").style.display = "none"
     }
 
-    let count = 0;
-    const onEditClick = () => {
-        const exercises = document.querySelectorAll(".exercise-container");
-        const deleteBtns = document.querySelectorAll(".btn-delete-exercise");
+    // let count = 0;
+    // const onEditClick = () => {
+    //     const exercises = document.querySelectorAll(".exercise-container");
+    //     const deleteBtns = document.querySelectorAll(".btn-delete-exercise");
 
-        if(count % 2 !== 0){
-            exercises.forEach(element => {
-                element.style.gridTemplateColumns = "auto"; 
-            });
+    //     if(count % 2 !== 0){
+    //         exercises.forEach(element => {
+    //             element.style.gridTemplateColumns = "auto"; 
+    //         });
 
-            deleteBtns.forEach(element => {
-                element.style.display = "none";
-            });
-        }else{
-            exercises.forEach(element => {
-                element.style.gridTemplateColumns = "10px auto"; 
-            });
+    //         deleteBtns.forEach(element => {
+    //             element.style.display = "none";
+    //         });
+    //     }else{
+    //         exercises.forEach(element => {
+    //             element.style.display = "grid";
+    //             element.style.gridTemplateColumns = "auto 1fr"; 
+    //         });
 
-            deleteBtns.forEach(element => {
-                element.style.display = "flex";
-            });
-        }
-        count++;
-    }
+    //         deleteBtns.forEach(element => {
+    //             element.style.display = "flex";
+    //         });
+    //     }
+    //     count++;
+    // }
 
     const updateExercises = (newExercises) => {
         setWorkout(newExercises);
@@ -76,11 +77,12 @@ const WorkoutDetailsContainer = () => {
     return (
         <>
         <div className="workout-details-container">
+              {/* <h2 onClick={onEditClick} className="btn-edit title-header">Edit</h2> */}
               <h1 className="page-header">{workout.title}</h1>
-              <div className="title-header" style={{
+              <div style={{
                   display: "flex"
               }}>
-                  <p style={{
+                  <p className="title-header" style={{
                       width: "50%",
                       paddingLeft: "2rem",
                   }}>Exercise</p>
@@ -91,9 +93,9 @@ const WorkoutDetailsContainer = () => {
                       justifyContent: "space-between",
                       paddingRight: "1em",
                   }}>
-                    <p>Sets</p>
-                    <p style={{paddingLeft: "2em"}}>Reps</p>
-                    <p>Wt ({units.weight})</p>
+                    <p className="title-header" >Sets</p>
+                    <p className="title-header" style={{paddingLeft: "2em"}}>Reps</p>
+                    <p className="title-header" >Wt ({units.weight})</p>
                   </div>
               </div>
             {workout.title && 

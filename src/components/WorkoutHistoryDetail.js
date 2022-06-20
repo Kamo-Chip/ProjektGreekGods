@@ -26,7 +26,7 @@ const WorkoutHistoryDetail = () => {
             <small style={{alignSelf:"center"}}>{`Completed on: ${formatDate(new Timestamp(workout.dateCompleted.seconds, workout.dateCompleted.nanoseconds).toDate())}`}</small>
             <small style={{alignSelf: "center", marginTop: "1em"}}>{`Volume: ${workout.volume} ${units.weight}`}</small>
             <div style={{
-                paddingLeft: ".8em"
+                textAlign: "center"
             }}>
                 <h2 className="page-header">Comment</h2>
                 <p>{workout.comment}</p>

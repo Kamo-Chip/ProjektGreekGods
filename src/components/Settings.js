@@ -1,45 +1,66 @@
-import { useContext } from "react";
-import { units, UnitsContext } from "./units-context";
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext, themes } from "./theme-context";
+import { UnitsContext, units } from "./units-context";
 
-const Settings = ({setUnits}) => {
+const Settings = ({setUnits, setTheme, theme}) => {
     
     const handleUnitsChange = (e) => {
         setUnits(units[e.target.id]);
     }
 
+    const handleThemeChange = (e) => {
+        setTheme(themes[e.target.id]);
+        let bgColor = themes[e.target.id].bgColor;
+        let color1 = themes[e.target.id].color1;
+        let color6 = themes[e.target.id].color6;
+
+        const root = document.querySelector(":root");
+
+        root.style.setProperty("--bg-color", bgColor);
+        root.style.setProperty("--color-1", color1);
+        root.style.setProperty("--color-6", color6);
+    }
+    
+    const currentUnits = useContext(UnitsContext);
+
+    useEffect(() => {
+        
+    }, [theme]);
+
     return (
-        <div>
-            <h1 className="page-header">Settings</h1>
+        <ThemeContext.Provider value={theme}>
             <div>
-                <div style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    margin: "0 1em",
-                    borderTop: "solid var(--color-6) 3px",
-                    borderBottom: "solid var(--color-6) 3px"
-                }}>
-                    <p>Units</p>
-                    <div style={{
-                        width: "45%",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        }}>
-                        <div>
-                            <input id="metric" type="radio" name="units" onClick={handleUnitsChange}/>
-                            <label>Metric</label>
+                <h1 className="page-header">Settings</h1>
+                <div>
+                    <div className="settings-item settings-item-no-bottom">
+                        <p>Units</p>
+                        <div className="settings-item-details">
+                            <div className="settings-item-field">
+                                <input id="metric" type="radio" name="units" onClick={handleUnitsChange} defaultChecked={currentUnits.distance === "m"}/>
+                                <label>Metric</label>
+                            </div>
+                            <div className="settings-item-field">
+                                <input id="imperial" type="radio" name="units" onClick={handleUnitsChange} defaultChecked={currentUnits.distance === "ft"}/>
+                                <label>Imperial</label>
+                            </div>
                         </div>
-                        <div>
-                            <input id="imperial" type="radio" name="units" onClick={handleUnitsChange}/>
-                            <label>Imperial</label>
+                    </div>
+                    <div className="settings-item">
+                        <p>Theme</p>
+                        <div className="settings-item-details">
+                            <div className="settings-item-field">
+                                <input id="dark" type="radio" name="theme" onClick={handleThemeChange} defaultChecked={theme.color1 === "#fff"}/>
+                                <label>Dark</label>
+                            </div>
+                            <div className="settings-item-field" >
+                                <input id="light" type="radio" name="theme" onClick={handleThemeChange} defaultChecked={theme.color1 === "#000"}/>
+                                <label>Light</label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </ThemeContext.Provider>
     );
 }
 
