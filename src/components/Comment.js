@@ -59,13 +59,39 @@ const Comment = ({workout}) => {
         workout.volume = volume;
     }
 
-    const compareVolumes = (workout, history) => {
-        let toCompare = history[0].volume;
+    const getWorkoutByTitle = (title, history) => {
+        let workouts = [];
 
-        //must always be greater than first volume inorder to be improved
+        history.forEach(element => {
+            if(element.title === title){
+                workouts.push(element)
+            }
+        });
+
+        return workouts;
+    }
+
+    const compareVolumes = (workout, history) => {
+        let toCompare = 0;
+        let groupedWorkoutHistory = {};
+
         for(let i = 0; i < history.length; i++){
-            toCompare = history[i].volume;
-            if(workout.volume > toCompare && workout.volume > history[0].volume){
+            groupedWorkoutHistory[history[i].title] = getWorkoutByTitle(history[i].title, history);
+        }
+        console.log(groupedWorkoutHistory);
+        const workouts = groupedWorkoutHistory[workout.title];
+
+        if(workouts === undefined){
+            workout.hasImproved = 0;
+            return;
+        }
+
+        console.log(workouts);
+        toCompare = workouts[0].volume;
+        //must always be greater than first volume inorder to be improved
+        for(let i = 0; i < workouts.length; i++){
+            toCompare = workouts[i].volume;
+            if(workout.volume > toCompare && workout.volume > workouts[0].volume){
                 workout.hasImproved = 1;
                 workout.improvedBy = ((workout.volume - toCompare) / toCompare) * 100;
             }else if(workout.volume === toCompare){

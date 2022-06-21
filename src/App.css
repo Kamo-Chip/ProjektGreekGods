@@ -9,7 +9,7 @@
   --color-1: #000;
   --color-2: #BD9B16;
   --color-3: #BB86FC;
-  --color-4: #CF6679;
+  --color-4: #ff002f;
   --color-5: #FCC200;
   --color-6: #CFB197;
 }
@@ -21,6 +21,10 @@ body {
   height: 100vh;
   background-color: var(--bg-color);
   color: var(--color-1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 

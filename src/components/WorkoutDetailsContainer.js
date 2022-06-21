@@ -4,7 +4,7 @@ import { getDoc, doc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import Comment from "./Comment";
 import WorkoutDetails from "./WorkoutDetails";
-import { UnitsContext } from "./units-context";
+import { UnitsContext } from "../contexts/units-context";
 
 const WorkoutDetailsContainer = () => {
     const { title } = useParams();

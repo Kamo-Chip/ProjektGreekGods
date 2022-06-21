@@ -11,6 +11,8 @@ const CreateWorkout = () => {
         exercises: [],
     });
 
+    const [ loading, setLoading ] = useState(false);
+
     const navigate = useNavigate();
 
     const addExercise = (e) => {
@@ -31,7 +33,7 @@ const CreateWorkout = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setLoading(true);
         const data = await getDoc(doc(db, auth.currentUser.uid, "routines"))
         .catch(err => console.log(err));
     
@@ -43,7 +45,10 @@ const CreateWorkout = () => {
             workouts: workouts,
             
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err);
+            setLoading(false);
+        });
 
         navigate("/home");
     }
@@ -76,7 +81,7 @@ const CreateWorkout = () => {
                     </div>
                     
                 </section>
-                <button>Create</button>
+                <button disabled={loading}>{loading ? "Loading..." : "Create"}</button>
             </form>
         </>
     )

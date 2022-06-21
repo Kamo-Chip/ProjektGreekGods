@@ -19,24 +19,8 @@ const Login = () => {
     const [error, setError ] = useState(null)
 
     useEffect(() => {
-        try{
-            persistUser()
-        }catch(error){
-            console.log(error);
-        }
+        navigate("/")
       }, []);
-
-
-    const persistUser = async () => {
-        const loggedInUser = localStorage.getItem("user");
-        const password = localStorage.getItem("password");
-        if(loggedInUser) {
-          const foundUser = JSON.parse(loggedInUser);
-          await signInWithEmailAndPassword(auth, foundUser.email, password)
-            .catch(err => console.log(err));
-            navigate("/home");
-        }
-    }
 
     useEffect(() => {
 
@@ -70,11 +54,6 @@ const Login = () => {
         setUser({...user, [e.target.name]: e.target.value});
     }
 
-
-    if(localStorage.getItem("user")) {
-      return <p>Loading...</p>
-    }
-  
     return (
         <form className="frm-login" onSubmit={handleSubmit}>
             <h1 className="page-header">Sign in</h1>

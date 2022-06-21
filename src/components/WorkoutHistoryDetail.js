@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import formatDate from "../utils/formatDate";
 import { Timestamp } from "@firebase/firestore";
 import { getElementError } from "@testing-library/react";
-import { UnitsContext } from "./units-context";
+import { UnitsContext } from "../contexts/units-context";
 
 const WorkoutHistoryDetail = () => {
     const location = useLocation();

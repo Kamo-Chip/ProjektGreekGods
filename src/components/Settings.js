@@ -1,16 +1,27 @@
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext, themes } from "./theme-context";
-import { UnitsContext, units } from "./units-context";
+import { ThemeContext, themes } from "../contexts/theme-context";
+import { UnitsContext, units } from "../contexts/units-context";
 import LogoutIcon from "../images/logout.svg";
+import { updateDoc, doc } from "@firebase/firestore";
+import { auth, db } from "../firebase";
 
 const Settings = ({setUnits, setTheme, theme}) => {
     
     const handleUnitsChange = (e) => {
         setUnits(units[e.target.id]);
+
+        updateDoc(doc(db, auth.currentUser.uid, "settings"), {
+            units: e.target.id,
+        })
     }
 
-    const handleThemeChange = (e) => {
+    const handleThemeChange = async (e) => {
         setTheme(themes[e.target.id]);
+
+        updateDoc(doc(db, auth.currentUser.uid, "settings"), {
+            theme: e.target.id,
+        })
+
         let bgColor = themes[e.target.id].bgColor;
         let color1 = themes[e.target.id].color1;
         let color6 = themes[e.target.id].color6;
@@ -25,19 +36,13 @@ const Settings = ({setUnits, setTheme, theme}) => {
     const currentUnits = useContext(UnitsContext);
 
     useEffect(() => {
-        
-    }, [theme]);
+        console.log(theme);
+    }, []);
 
     return (
         <ThemeContext.Provider value={theme}>
             <div>
                 <h1 className="page-header">Settings</h1>
-                {/* <img src={LogoutIcon} style={{
-                    position: "absolute",
-                    top: "0",
-                    right: "0",
-                    margin: ".5em .5em 0 0",
-                }} alt="Logout"/> */}
                 <div>
                     <div className="settings-item settings-item-no-bottom">
                         <p>Units</p>
