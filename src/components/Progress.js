@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { db, auth } from "../firebase";
+import { updateDoc, doc } from "@firebase/firestore";
 
-const Progress = ({ workoutHistory }) => {
+const Progress = ({ workoutHistory, setWorkoutHistory }) => {
+
     const groupedWorkoutHistory = {};
 
     const getTitles = () => {
@@ -34,12 +37,23 @@ const Progress = ({ workoutHistory }) => {
         })
     }
 
+    const clearHistory = async () => {
+        setWorkoutHistory([]);
+        await updateDoc(doc(db, auth.currentUser.uid, "routines"), {
+            workoutHistory: [],
+        })
+        .catch(err => console.log(err));
+
+        //delete images related to user
+    }
+
     groupWorkouts();
 
     return (
         <div className="progress">
             <div className="workouts-container">
                 <h1 className="page-header">Workout History</h1>
+                <h2 className="page-header" style={{position: "absolute", top: "0", right: "0", marginTop: ".5em", marginRight: ".5em"}} onClick={clearHistory}>Clear</h2>
                 { workoutHistory.length === 0 && <p style={{textAlign: "center"}}>Past workout data will be show here</p> }
                 {Object.keys(groupedWorkoutHistory).map(element => {
                     return (

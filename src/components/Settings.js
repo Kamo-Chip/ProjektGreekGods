@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext, themes } from "./theme-context";
 import { UnitsContext, units } from "./units-context";
+import LogoutIcon from "../images/logout.svg";
 
 const Settings = ({setUnits, setTheme, theme}) => {
     
@@ -31,6 +32,12 @@ const Settings = ({setUnits, setTheme, theme}) => {
         <ThemeContext.Provider value={theme}>
             <div>
                 <h1 className="page-header">Settings</h1>
+                {/* <img src={LogoutIcon} style={{
+                    position: "absolute",
+                    top: "0",
+                    right: "0",
+                    margin: ".5em .5em 0 0",
+                }} alt="Logout"/> */}
                 <div>
                     <div className="settings-item settings-item-no-bottom">
                         <p>Units</p>

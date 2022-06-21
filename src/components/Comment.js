@@ -27,7 +27,7 @@ const Comment = ({workout}) => {
         
         setVolume();
 
-        const imgRef = ref(storage, `images/progressPic${workoutHistory.length}`);
+        const imgRef = ref(storage, `images/${auth.currentUser.uid}/progressPic${workoutHistory.length}`);
         
         const snap = await uploadBytes(imgRef, srcImg);
 

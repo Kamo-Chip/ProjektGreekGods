@@ -18,7 +18,7 @@ const ProgressContainer = () => {
     }
 
     return (
-        <Progress workoutHistory={workoutHistory}/>
+        <Progress workoutHistory={workoutHistory} setWorkoutHistory={setWorkoutHistory}/>
     )
 }
 
