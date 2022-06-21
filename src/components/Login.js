@@ -18,9 +18,26 @@ const Login = () => {
 
     const [error, setError ] = useState(null)
 
-    // useEffect(() => {
-    //     navigate("/login");
-    // },[])
+    useEffect(() => {
+        try{
+            persistUser()
+        }catch(error){
+            console.log(error);
+        }
+      }, []);
+
+
+    const persistUser = async () => {
+        const loggedInUser = localStorage.getItem("user");
+        const password = localStorage.getItem("password");
+        if(loggedInUser) {
+          const foundUser = JSON.parse(loggedInUser);
+          await signInWithEmailAndPassword(auth, foundUser.email, password)
+            .catch(err => console.log(err));
+            navigate("/home");
+        }
+    }
+
     useEffect(() => {
 
     }, [details]);
@@ -32,14 +49,18 @@ const Login = () => {
         setDetails({...details, loading: true});
         
         try{
-            console.log(user);
             await signInWithEmailAndPassword(auth, user.email, user.password);
-    
+            
+            localStorage.setItem("user", JSON.stringify(auth.currentUser));
+            localStorage.setItem("password", user.password);
+
             navigate("/home");
         }catch(err){
             setDetails({...details, error: err.message});
             setError(err.message);
             setDetails({...details, loading: false});
+            localStorage.setItem("user", null);
+            localStorage.setItem("password", null);
         }
     }
 
@@ -48,6 +69,12 @@ const Login = () => {
 
         setUser({...user, [e.target.name]: e.target.value});
     }
+
+
+    if(localStorage.getItem("user")) {
+      return <p>Loading...</p>
+    }
+  
     return (
         <form className="frm-login" onSubmit={handleSubmit}>
             <h1 className="page-header">Sign in</h1>
@@ -60,7 +87,7 @@ const Login = () => {
                 <input type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
             </section>
             <button disabled={details.loading}>{details.loading ? "Loading..." : "Sign in"}</button>
-            <Link to="/"><p style={{color: "#fff"}}>Don't have an account?</p></Link>
+            <Link to="/register"><p>Don't have an account?</p></Link>
             { error ? <p className="error">{error}</p> : null}
         </form>
     )

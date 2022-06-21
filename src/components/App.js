@@ -19,10 +19,6 @@ import { ThemeContext, themes } from './theme-context';
 
 const App = () => {
 
-  // const [ user, setUser ] = useState(auth.currentUser);
-  // useState(() => {
-  //   console.log(auth.currentUser)
-  // }, [user]);
   const [ unit, setUnit ] = useState(units.metric);
 
   const [ theme, setTheme ] = useState(themes.light);
@@ -35,12 +31,18 @@ const App = () => {
     setTheme(newUnits)
   }
 
+  // useEffect(() => {
+  //   if(localStorage.getItem("user")) {
+  //     return <p>Loading...</p>
+  //   }
+  // }, []);
+
   return (
     <UnitsContext.Provider value={unit}>
           <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Register/>}/>
-                <Route path="/login" element={<Login/>}/>
+            <Routes>]
+                <Route path="/" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
                 <Route element={<PrivateRoute/>}>
                   <Route path="/home" element={<Routines/>}/>
                   <Route path="/home/:title" element={<WorkoutDetailsContainer/>}/>

@@ -64,7 +64,7 @@ const Register = () => {
                 <input type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
             </section>
             <button disabled={loading}>{loading ? "Loading..." : "Create account"}</button>
-            <Link to="/login"><p>Already have an account?</p></Link>
+            <Link to="/"><p>Already have an account?</p></Link>
             {error.msg ? <p className="error" style={{width: "fit-content"}}>{error.msg}</p> : null}
         </form>
     )
