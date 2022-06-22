@@ -7,12 +7,12 @@ export const themes = {
         color2: "#BD9B16",
         color4: "#CF6679",
         color5: "#FCC200",
-        color6: "#CFB197",
+        color6: "#397dd6",
     },
     dark: {
-        bgColor: "#121212",
+        bgColor: "#101010",
         color1: "#fff",
-        color6: "#8a7867"
+        color6: "#002F63"
     }
 }
 

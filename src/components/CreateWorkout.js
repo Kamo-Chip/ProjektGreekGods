@@ -92,7 +92,7 @@ const Exercise = ({ id, handleExerciseChange }) => {
         <div id={id} className="exercise">
             <input onChange={handleExerciseChange} className="exercise-name" name="name" type="text" placeholder="Name of exercise" required={true}/>
             <input onChange={handleExerciseChange} type="number" name="sets" placeholder="sets" required={true}/>
-            <input onChange={handleExerciseChange} type="number" name="reps" placeholder="reps" required={true}/>
+            {/* <input onChange={handleExerciseChange} type="number" name="reps" placeholder="reps" required={true}/> */}
         </div>
     )
 }

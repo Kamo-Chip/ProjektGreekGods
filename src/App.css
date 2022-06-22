@@ -7,11 +7,11 @@
 :root {
   --bg-color: #F5F5F5F5;
   --color-1: #000;
-  --color-2: #BD9B16;
+  --color-2: #0C53A6;
   --color-3: #BB86FC;
   --color-4: #ff002f;
-  --color-5: #FCC200;
-  --color-6: #CFB197;
+  --color-5: #6BD0FF;
+  --color-6: #397dd6;
 }
 
 body {
@@ -39,7 +39,7 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--color-1);
+  color: #fff;
 }
 
 .page-header {
@@ -219,7 +219,7 @@ button {
   width: 50px;
 }
 .exercise-name{
-  width: 130px !important;
+  width: 180px !important;
 }
 
 /*Navigation*/
@@ -244,7 +244,6 @@ button {
 }
 
 .navigation p {
-  color: var(--color-1);
   margin-top: 0;
 }
 

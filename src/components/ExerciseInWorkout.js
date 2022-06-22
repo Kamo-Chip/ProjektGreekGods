@@ -1,5 +1,11 @@
-const ExerciseInWorkout = ({exercise, id, workout, setWorkout}) => {
+import UpIcon from "../images/up.svg";
+import DownIcon from "../images/down.svg";
 
+const ExerciseInWorkout = ({exercise, id, workout, setWorkout}) => {
+    const arr = new Array((Number)(exercise.sets));
+    for(let i = 0; i < arr.length; i++){
+        arr[i] = "";
+    }
     // const deleteExercise = async (e) => {
     //     let newExercises = [];
     //     workout.exercises.forEach(element => {
@@ -41,14 +47,63 @@ const ExerciseInWorkout = ({exercise, id, workout, setWorkout}) => {
                     flexDirection: "row",
                     width: "50%",
                     justifyContent: "space-between",
-                    paddingRight: "1em"
+                    paddingRight: "1em",
+                    alignItems: "center",
                 }}>
-                    <input style={{textAlign:"center"}} id="sets-input" type="number" placeholder={exercise.sets} required={true}/>
+                    <div className="sets-input-container" style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                    }}>
+                        <span style={{textAlign:"center", margin: "24px 0", width: "40px"}} id="sets-input" type="number">{exercise.sets}</span>
+                    </div>
                     <p style={{
-                        marginTop: ".5em"
+                        marginTop: "1em"
                     }}>x</p>
-                    <input style={{textAlign:"center"}} id="reps-input" type="number" placeholder={exercise.reps} required={true}/>
-                    <input style={{textAlign:"center"}} id="weight-input" type="number" required={true}/>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center"
+                    }}>
+                        <img src={UpIcon} alt="Up"/>
+                        <div id={`${exercise.name}reps`} style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            height: "35px",
+                            width: "60px",
+                            overflowY: "scroll",
+                        }}>
+                            {arr.map(element => {
+                                return (
+                                    <input style={{textAlign:"center", minHeight: "35px", marginBottom: "5px"}} id="reps-input" type="number" required={true}/>
+                                )
+                            })}
+                        </div>
+                        <img src={DownIcon} alt="Down"/>
+                    </div>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center"
+                    }}>
+                        <img src={UpIcon} alt="Up"/>
+                        <div id={`${exercise.name}weights`} style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            height: "35px",
+                            width: "40px",
+                            overflowY: "scroll",
+                        }}>
+                            {arr.map(element => {
+                                return (
+                                    <input style={{textAlign:"center", minHeight: "35px", marginBottom: "20px"}} id="weight-input" type="number" required={true}/>
+                                )
+                            })}
+                        </div>
+                        <img src={DownIcon} alt="Down"/>
+                    </div>
                 </div>
             </div>
         </div>

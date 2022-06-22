@@ -21,7 +21,8 @@ const WorkoutDetailsContainer = () => {
 
         workouts.forEach(element => {
             if(element.title === title) {
-                setWorkout(element)
+                setWorkout(element);
+                console.log(workout)
                 return;
             }
         });
@@ -30,14 +31,27 @@ const WorkoutDetailsContainer = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const exerciseDetails = Array.from(document.querySelectorAll(".exercise-info"));
-        
-        for(let i = 0; i < exerciseDetails.length; i++){
-            workout.exercises[i].reps = exerciseDetails[i].children[2].value;
-            workout.exercises[i].sets = exerciseDetails[i].children[0].value;
-            workout.exercises[i].weight = exerciseDetails[i].children[3].value;
+        // const repsArray = Array.from(document.querySelectorAll(`${exercise.name}reps`));
+
+        for(let i = 0; i < workout.exercises.length; i++){
+            let repsArray = Array.from(document.getElementById(`${workout.exercises[i].name}reps`).children);
+            let repValues = [];
+            repsArray.forEach(element => {
+                repValues.push((Number)(element.value));
+            });
+
+            workout.exercises[i].reps = repValues
         }
 
+        for(let i = 0; i < workout.exercises.length; i++){
+            let weightsArray = Array.from(document.getElementById(`${workout.exercises[i].name}weights`).children);
+            let weightValues = [];
+            weightsArray.forEach(element => {
+                weightValues.push((Number)(element.value));
+            });
+
+            workout.exercises[i].weights = weightValues;
+        }
         const commentContainer = document.querySelector(".comment-container");
         commentContainer.style.display = "flex";
 

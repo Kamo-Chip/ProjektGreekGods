@@ -15,6 +15,15 @@ const WorkoutHistoryDetail = () => {
 
     const units = useContext(UnitsContext);
 
+    const sumArray = (array) => {
+        let sum = 0;
+        array.forEach(element => {
+            sum += (Number)(element);
+        });
+
+        return sum
+    }
+    
     return (
         <div style={{
             display: "flex",
@@ -59,7 +68,8 @@ const WorkoutHistoryDetail = () => {
                 {workout.exercises && workout.exercises.map(element => {
                     return(
                         <div className="exercise-details" style={{
-                            justifyContent: "space-between"
+                            justifyContent: "space-between",
+                            borderBottom: "solid #000 3px",
                         }}>
                             <p style={{
                                 width: "35%"
@@ -67,18 +77,29 @@ const WorkoutHistoryDetail = () => {
                             <div style={{
                                 // display: "flex",
                                 // flexDirection: "row",
-                                // width: "50%",
-                                // justifyContent: "space-between",
-                                display: "grid",
-                                gridTemplateColumns: "1fr 10px repeat(3, 1fr)",
                                 width: "65%",
-                                justifyContent: "center",
+                                justifyContent: "space-between",
+                                display: "grid",
+                                gridTemplateColumns: "repeat(4, 1fr)",
+                                // width: "65%",
+                                // justifyContent: "center",
                              
                             }}>
                                 <p style={{textAlign: "center"}}>{element.sets}</p>
-                                <p style={{textAlign: "center"}}>x</p>
-                                <p style={{textAlign: "center"}}>{element.reps}</p>
-                                <p style={{textAlign: "center"}}>{element.weight}</p>
+                                <div>
+                                    {element.reps.map(elm => {
+                                        return (
+                                            <p style={{textAlign: "center"}}>{elm}</p>
+                                        )
+                                    })}
+                                </div>
+                                <div>
+                                    {element.weights.map(elm => {
+                                        return (
+                                            <p style={{textAlign: "center"}}>{elm}</p>
+                                        )
+                                    })}
+                                </div>
                                 <p style={{textAlign: "center"}}>{element.volume}</p>
                             </div>
                         </div>
