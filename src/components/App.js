@@ -35,16 +35,16 @@ const App = () => {
   const setSettings = async () => {
     let settings = {theme: themes.light, units: units.metric};
     let user = localStorage.getItem("user");
+    const loggedInUser = JSON.parse(user);
 
-    if(user){
-      const loggedInUser = JSON.parse(user);
-
+    if(loggedInUser != null){  
       await getDoc(doc(db, loggedInUser.uid, "settings"))
       .then(result => {
         let data = result.data();
         settings.theme = themes[data.theme];
         settings.units = units[data.units];
-      });
+      })
+      .catch(err => console.log(err));
     }
 
     setTheme(settings.theme);

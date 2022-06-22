@@ -19,10 +19,14 @@ const Loading = () => {
     const persistUser = async () => {
         const loggedInUser = localStorage.getItem("user");
         const password = localStorage.getItem("password");
-        if(loggedInUser) {
-          const foundUser = JSON.parse(loggedInUser);
+
+        const foundUser = JSON.parse(loggedInUser);
+
+        if(foundUser != null) {
           await signInWithEmailAndPassword(auth, foundUser.email, password)
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+            });
             navigate("/home");
         }else{
             navigate("/register");
@@ -42,7 +46,7 @@ const Loading = () => {
             zIndex: "15",
         }}>
             <img src={GodIcon} alt="Projekt Greek Gods Logo"/>
-            <p>Loading...</p>
+            <p style={{color: "#fff"}}>Loading...</p>
         </div>
     )
 }

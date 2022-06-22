@@ -19,10 +19,6 @@ const Login = () => {
     const [error, setError ] = useState(null)
 
     useEffect(() => {
-        navigate("/")
-      }, []);
-
-    useEffect(() => {
 
     }, [details]);
 

@@ -1,12 +1,12 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
-import Login from "./Login";
+import Loading from "./Loading";
 
 const PrivateRoute = () => {
     const navigate = useNavigate();
 
     return (
-        auth.currentUser ? <Outlet/> : <Login/>
+        auth.currentUser ? <Outlet/> : <Loading/>
     )
 }
 
