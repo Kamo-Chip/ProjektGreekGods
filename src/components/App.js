@@ -44,9 +44,10 @@ const App = () => {
         settings.theme = themes[data.theme];
         settings.units = units[data.units];
       })
-      .catch(err => console.log(err));
-      localStorage.setItem("user", null);
-      localStorage.setItem("password", null);
+      .catch(err => {
+        localStorage.setItem("user", null);
+        localStorage.setItem("password", null);
+      });
     }
 
     setTheme(settings.theme);

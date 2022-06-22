@@ -95,8 +95,8 @@ button {
   justify-content: space-between;
 }
 
-.frm-register, .frm-login a p {
-  color: var(--color-1);
+.frm-register a p, .frm-login a p {
+  color: var(--color-1) !important;
 }
 
 .frm-register button, .frm-login button {
