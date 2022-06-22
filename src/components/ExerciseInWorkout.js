@@ -70,7 +70,7 @@ const ExerciseInWorkout = ({exercise, id, workout, setWorkout}) => {
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
-                            height: "35px",
+                            height: "40px",
                             width: "60px",
                             overflowY: "scroll",
                         }}>
@@ -92,8 +92,8 @@ const ExerciseInWorkout = ({exercise, id, workout, setWorkout}) => {
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
-                            height: "35px",
-                            width: "40px",
+                            height: "40px",
+                            width: "60px",
                             overflowY: "scroll",
                         }}>
                             {arr.map(element => {
