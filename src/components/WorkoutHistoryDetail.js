@@ -32,8 +32,8 @@ const WorkoutHistoryDetail = () => {
             paddingBottom: "1em"
         }}>
             <h1 className="page-header">Workout Recap</h1>
-            <small style={{alignSelf:"center"}}>{`Completed on: ${formatDate(new Timestamp(workout.dateCompleted.seconds, workout.dateCompleted.nanoseconds).toDate())}`}</small>
-            <small style={{alignSelf: "center", marginTop: "1em"}}>{`Volume: ${workout.volume} ${units.weight}`}</small>
+            <p style={{alignSelf:"center", textAlign: "center", margin: "0em"}}>{`Completed on: ${formatDate(new Timestamp(workout.dateCompleted.seconds, workout.dateCompleted.nanoseconds).toDate())}`}</p>
+            <p style={{alignSelf: "center", marginBottom: "0em", textAlign:"center"}}>{`Volume: ${workout.volume} ${units.weight}`}</p>
             <div style={{
                 textAlign: "center"
             }}>
@@ -69,7 +69,7 @@ const WorkoutHistoryDetail = () => {
                     return(
                         <div className="exercise-details" style={{
                             justifyContent: "space-between",
-                            borderBottom: "solid #000 3px",
+                            borderBottom: "solid var(--color-6) 2px",
                         }}>
                             <p style={{
                                 width: "35%"
