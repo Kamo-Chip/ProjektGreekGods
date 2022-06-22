@@ -18,6 +18,13 @@ const Login = () => {
 
     const [error, setError ] = useState(null)
 
+<<<<<<< HEAD
+=======
+//     useEffect(() => {
+//         navigate("/")
+//       }, []);
+
+>>>>>>> f2369a1816718537d9207546c238b70cd497232e
     useEffect(() => {
 
     }, [details]);
