@@ -65,7 +65,7 @@ const ExerciseInWorkout = ({exercise, id, workout, setWorkout}) => {
                         flexDirection: "column",
                         alignItems: "center"
                     }}>
-                        <img src={UpIcon} alt="Up"/>
+                       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="var(--color-1)"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 14l5-5 5 5H7z"/></svg>
                         <div id={`${exercise.name}reps`} style={{
                             display: "flex",
                             flexDirection: "column",
@@ -80,14 +80,14 @@ const ExerciseInWorkout = ({exercise, id, workout, setWorkout}) => {
                                 )
                             })}
                         </div>
-                        <img src={DownIcon} alt="Down"/>
+                        <svg className="input-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="var(--color-1)"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 10l5 5 5-5H7z"/></svg>
                     </div>
                     <div style={{
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center"
                     }}>
-                        <img src={UpIcon} alt="Up"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="var(--color-1)"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 14l5-5 5 5H7z"/></svg>
                         <div id={`${exercise.name}weights`} style={{
                             display: "flex",
                             flexDirection: "column",
@@ -102,7 +102,7 @@ const ExerciseInWorkout = ({exercise, id, workout, setWorkout}) => {
                                 )
                             })}
                         </div>
-                        <img src={DownIcon} alt="Down"/>
+                        <svg className="input-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="var(--color-1)"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 10l5 5 5-5H7z"/></svg>
                     </div>
                 </div>
             </div>

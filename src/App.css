@@ -200,7 +200,7 @@ button {
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
-  border-bottom: solid var(--color-1) 2px;
+  border-bottom: solid var(--color-6) 2px;
   width: 95%;
 }
 
@@ -302,8 +302,8 @@ button {
   justify-content: space-between;
   align-items: center;
   margin: 0 1em;
-  border-top: solid var(--color-6) 3px;
-  border-bottom: solid var(--color-6) 3px;
+  border-top: solid var(--color-6) 2px;
+  border-bottom: solid var(--color-6) 2px;
 }
 
 .settings-item-details {

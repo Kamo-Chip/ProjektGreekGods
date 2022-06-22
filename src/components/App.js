@@ -1,5 +1,5 @@
 import '../App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Register from "./Register";
 import Routines from "./Routines";
 import CreateWorkout from './CreateWorkout';
@@ -15,14 +15,14 @@ import PrivateRoute from "./PrivateRoute";
 import { auth, db} from "../firebase";
 import { useState, useEffect } from 'react';
 import { UnitsContext, units } from '../contexts/units-context';
-import { ThemeContext, themes } from '../contexts//theme-context';
+import { ThemeContext, themes } from '../contexts/theme-context';
 import Loading from './Loading';
 import { getDoc, doc } from 'firebase/firestore';
 
 const App = () => {
-  const [ unit, setUnit ] = useState();
+  const [ unit, setUnit ] = useState(units.metric);
 
-  const [ theme, setTheme ] = useState(themes.light);
+  const [ theme, setTheme ] = useState(themes.dark);
 
   const setUnits = (newUnits) => {
     setUnit(newUnits)
@@ -45,6 +45,8 @@ const App = () => {
         settings.units = units[data.units];
       })
       .catch(err => console.log(err));
+      localStorage.setItem("user", null);
+      localStorage.setItem("password", null);
     }
 
     setTheme(settings.theme);
