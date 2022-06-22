@@ -74,9 +74,9 @@ const ExerciseInWorkout = ({exercise, id, workout, setWorkout}) => {
                             width: "60px",
                             overflowY: "scroll",
                         }}>
-                            {arr.map(element => {
+                            {arr.map((element, idx) => {
                                 return (
-                                    <input style={{textAlign:"center", minHeight: "35px", marginBottom: "5px"}} id="reps-input" type="number" required={true}/>
+                                    <input style={{textAlign:"center", minHeight: "35px", marginBottom: "5px"}} id="reps-input" type="number" required={true} placeholder={`#${idx+1}`}/>
                                 )
                             })}
                         </div>
@@ -96,9 +96,9 @@ const ExerciseInWorkout = ({exercise, id, workout, setWorkout}) => {
                             width: "60px",
                             overflowY: "scroll",
                         }}>
-                            {arr.map(element => {
+                            {arr.map((element,idx) => {
                                 return (
-                                    <input style={{textAlign:"center", minHeight: "35px", marginBottom: "20px"}} id="weight-input" type="number" required={true}/>
+                                    <input style={{textAlign:"center", minHeight: "35px", marginBottom: "5px"}} id="weight-input" placeholder={`#${idx+1}`} type="number" required={true}/>
                                 )
                             })}
                         </div>
