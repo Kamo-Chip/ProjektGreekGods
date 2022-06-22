@@ -108,7 +108,7 @@ const WorkoutDetailsContainer = () => {
                       paddingRight: "1em",
                   }}>
                     <p className="title-header" >Sets</p>
-                    <p className="title-header" style={{paddingLeft: "2em"}}>Reps</p>
+                    <p className="title-header" style={{paddingLeft: ".5em"}}>Reps</p>
                     <p className="title-header" >Wt ({units.weight})</p>
                   </div>
               </div>
