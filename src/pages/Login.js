@@ -77,12 +77,12 @@ const Login = () => {
                 <div style={{display: "flex"}}>
                     <input id="password" type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
                     {passHidden ? 
-                        <GrFormViewHide onClick={togglePassword} size="24px" style={{
+                        <GrFormViewHide onClick={togglePassword} size="2rem" style={{
                             marginLeft: "1em",
                             marginTop: ".5em"
                         }}/>
                         :
-                        <GrView onClick={togglePassword} size="20px" style={{
+                        <GrView onClick={togglePassword} size="2rem" style={{
                             marginLeft: "1em",
                             marginTop: ".5em"
                         }}/>
