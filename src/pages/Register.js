@@ -83,14 +83,14 @@ const Register = () => {
                 <div style={{display: "flex"}}>
                     <input id="password" type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
                     {passHidden ? 
-                        <GrFormViewHide onClick={togglePassword} size="2rem" style={{
-                            marginLeft: "1em",
-                            marginTop: ".5em"
+                        <GrFormViewHide onClick={togglePassword} size="3rem" style={{
+                            // marginLeft: "1em",
+                            // marginTop: ".5em"
                         }}/>
                         :
-                        <GrView onClick={togglePassword} size="2rem" style={{
-                            marginLeft: "1em",
-                            marginTop: ".5em"
+                        <GrView onClick={togglePassword} size="3rem" style={{
+                            // marginLeft: "1em",
+                            // marginTop: ".5em"
                         }}/>
                     }
                 </div>
