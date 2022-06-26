@@ -82,7 +82,7 @@ const Login = () => {
                             // marginTop: ".5em"
                         }}/>
                         :
-                        <GrView onClick={togglePassword} size="3rem" style={{
+                        <GrView onClick={togglePassword} size="2.5rem" style={{
                             // marginLeft: "1em",
                             // marginTop: ".5em"
                         }}/>
