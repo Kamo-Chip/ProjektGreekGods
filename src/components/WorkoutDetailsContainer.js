@@ -5,11 +5,20 @@ import { useContext, useEffect, useState } from "react";
 import Comment from "./Comment";
 import WorkoutDetails from "./WorkoutDetails";
 import { UnitsContext } from "../contexts/units-context";
+import { MdHelp } from "react-icons/md";
+import Help from "./Help";
+import HelpImage from "../images/scrollHelp.png";
 
 const WorkoutDetailsContainer = () => {
     const { title } = useParams();
     const [ workout, setWorkout ] = useState({});
+    const [ helpIsActive, setHelpIsActive ] = useState(false);
+
     const units = useContext(UnitsContext);
+    const helpData = {
+        text: "Enter the reps and weight per set. Scroll after entering each set's data",
+        imageSrc: HelpImage,
+    }
 
     useEffect(() => {
         getWorkout();
@@ -22,7 +31,6 @@ const WorkoutDetailsContainer = () => {
         workouts.forEach(element => {
             if(element.title === title) {
                 setWorkout(element);
-                console.log(workout)
                 return;
             }
         });
@@ -30,8 +38,6 @@ const WorkoutDetailsContainer = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // const repsArray = Array.from(document.querySelectorAll(`${exercise.name}reps`));
 
         for(let i = 0; i < workout.exercises.length; i++){
             let repsArray = Array.from(document.getElementById(`${workout.exercises[i].name}reps`).children);
@@ -52,70 +58,73 @@ const WorkoutDetailsContainer = () => {
 
             workout.exercises[i].weights = weightValues;
         }
+
+        if(detailsMissing()){
+            window.alert("Details are missing");
+            return;
+        }
+
         const commentContainer = document.querySelector(".comment-container");
         commentContainer.style.display = "flex";
 
         document.querySelector(".workout-details-container").style.display = "none"
     }
 
-    // let count = 0;
-    // const onEditClick = () => {
-    //     const exercises = document.querySelectorAll(".exercise-container");
-    //     const deleteBtns = document.querySelectorAll(".btn-delete-exercise");
-
-    //     if(count % 2 !== 0){
-    //         exercises.forEach(element => {
-    //             element.style.gridTemplateColumns = "auto"; 
-    //         });
-
-    //         deleteBtns.forEach(element => {
-    //             element.style.display = "none";
-    //         });
-    //     }else{
-    //         exercises.forEach(element => {
-    //             element.style.display = "grid";
-    //             element.style.gridTemplateColumns = "auto 1fr"; 
-    //         });
-
-    //         deleteBtns.forEach(element => {
-    //             element.style.display = "flex";
-    //         });
-    //     }
-    //     count++;
-    // }
-
     const updateExercises = (newExercises) => {
         setWorkout(newExercises);
     }
 
+    const displayHelp = () => {
+        const helpScreen = document.querySelector(".help");
+        helpScreen.style.display = "flex";
+        setHelpIsActive(true);
+    }
+
+    const detailsMissing = () => {
+       let isDetailMissing = false;
+        workout.exercises.forEach(element => {
+            if(element.weights.indexOf(0) >= 0 || element.reps.indexOf(0) >= 0){
+                isDetailMissing = true;
+            }
+        });
+
+        return isDetailMissing;
+    }
+
     return (
         <>
+        <Help data={helpData} setIsActive={setHelpIsActive}/>
         <div className="workout-details-container">
-              {/* <h2 onClick={onEditClick} className="btn-edit title-header">Edit</h2> */}
+            <MdHelp onClick={displayHelp} size="30px" style={{
+                    position: "fixed",
+                    top: "0",
+                    left: "0",
+                    margin: ".5em 0 0 .5em"
+                }}
+            />
               <h1 className="page-header">{workout.title}</h1>
               <div style={{
                   display: "flex"
               }}>
                   <p className="title-header" style={{
-                      width: "50%",
-                      paddingLeft: "2rem",
+                      width: "40%",
                   }}>Exercise</p>
                   <div style={{
-                      width: "50%",
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      paddingRight: "1em",
+                        width: "60%",
+                        justifyContent: "space-between",
+                        display: "grid",
+                        gridTemplateColumns: "repeat(3, 1fr)",
+                        textAlign: "center"
                   }}>
                     <p className="title-header" >Sets</p>
-                    <p className="title-header" style={{paddingLeft: ".5em"}}>Reps</p>
-                    <p className="title-header" >Wt ({units.weight})</p>
+                    <p className="title-header">Reps</p>
+                    <p className="title-header">{`Weight(${units.weight})`}</p>
                   </div>
               </div>
             {workout.title && 
                 <WorkoutDetails setWorkout={updateExercises} workout={workout}/>
             }
-            <button onClick={handleSubmit}>Complete</button>
+            <button onClick={handleSubmit} disabled={helpIsActive}>Complete</button>
             
         </div>
         <Comment workout={workout}/>

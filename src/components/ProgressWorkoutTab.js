@@ -2,15 +2,32 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react"
 import { Timestamp, updateDoc } from "firebase/firestore";
 import formatDate from "../utils/formatDate";
+import { MdHelp } from "react-icons/md";
+import Help from "./Help";
 
 const ProgressWorkoutTab = () => {
     const [ history, setHistory ] = useState([]);
     const location = useLocation();
     const { title } = useParams();
+    const [ helpIsActive, setHelpIsActive ] = useState(false);
+
+    const helpData = {
+        text: `<p>Workout with grey background = No change in performance.</p>
+         <p>Workout with green background = Increase in performance.</p>
+         <p>Workout with red background = Decrease in performance.</p>
+         For workout to be considered as improved it's volume must be greater than the first workout's volume and the previous workout's volume`,
+        imageSrc: null,
+    }
 
     useEffect(() => {
         setHistory(location.state.keys);
     }, []);
+
+    const displayHelp = () => {
+        const helpScreen = document.querySelector(".help");
+        helpScreen.style.display = "flex";
+        setHelpIsActive(true);
+    }
 
     return (
         <div style={{
@@ -18,28 +35,14 @@ const ProgressWorkoutTab = () => {
             flexDirection: "column",
             alignItems: "center",
         }}>
+            <Help data={helpData} setIsActive={setHelpIsActive}/>
+            <MdHelp onClick={displayHelp} size="30px" style={{
+                position: "absolute",
+                top: "0",
+                left: "0",
+                margin: ".5em 0 0 .5em",
+            }}/>
             <h1 className="page-header">{`${title} history`}</h1>
-            <div style={{
-                width: "95vw",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginBottom: "1em",
-            }}>
-                <div style={{display: "flex"}}>
-                <div className="key-item" style={{backgroundColor: "rgb(58, 173, 58)"}}></div>
-                <span style={{paddingLeft: ".2em"}}>Performance +</span>
-                </div>
-                <div style={{display: "flex"}}>
-                <div className="key-item" style={{backgroundColor: "var(--color-4)"}}></div>
-                <span style={{paddingLeft: ".2em"}}>Performance -</span>
-                </div>
-                <div style={{display: "flex"}}>
-                <div className="key-item" style={{backgroundColor: "#969696"}}></div>
-                <span style={{paddingLeft: ".2em"}}>No change</span>
-                </div>
-            </div>
             <div style={{display: "flex", flexDirection: "row", padding: "0 1em", justifyContent: "space-between", width: "100%"}}>
                 <p className="page-header">Date Completed</p>
                 <p className="page-header">&Delta; Volume</p>

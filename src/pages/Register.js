@@ -27,6 +27,7 @@ const Register = () => {
         e.preventDefault();
         setError({...error, msg: null});
         setLoading(true);
+
         try{
             const result = await createUserWithEmailAndPassword(auth, user.email, user.password)
 
@@ -40,6 +41,8 @@ const Register = () => {
                 units: "metric",
             });
 
+            localStorage.setItem("user", JSON.stringify(result.user));
+            localStorage.setItem("password", user.password);
             navigate("/home");
         }catch(err){
             setLoading(false);
@@ -64,7 +67,7 @@ const Register = () => {
                 <input type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
             </section>
             <button disabled={loading}>{loading ? "Loading..." : "Create account"}</button>
-            <Link to="/login"><p>Already have an account?</p></Link>
+            <Link to="/login"><p style={{textDecoration: "underline", textDecorationColor: "var(--color-6)"}}>Already have an account?</p></Link>
             {error.msg ? <p className="error" style={{width: "fit-content"}}>{error.msg}</p> : null}
         </form>
     )

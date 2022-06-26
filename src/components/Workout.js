@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { db, auth } from "../firebase";
 import { updateDoc, doc } from "firebase/firestore";
 import DeleteIcon from "../images/delete.svg";
+import { MdEdit } from "react-icons/md";
+import { TiDelete } from "react-icons/ti";
 
 const Workout = ({ workouts, workout, setWorkouts }) => {
     const deleteWorkout = (e) => {
@@ -22,13 +24,26 @@ const Workout = ({ workouts, workout, setWorkouts }) => {
 
     return (
         <div className="workout-container">
-            <img src={DeleteIcon} alt={"x"} onClick={deleteWorkout} id={workout.title} className="btn-delete-workout" style={{display:"none"}}/>
-            <Link to={`/home/${workout.title}`}>
-                <div className="workout">
-                    <h2 className="title">{workout.title}</h2>
-                    <small>{workout.day}</small>
+            <TiDelete 
+                size="28px" 
+                onClick={deleteWorkout} 
+                id={workout.title} 
+                className="btn-delete-workout"
+                style={{display:"none", marginBottom: "1em"}}
+            />
+            <div className="workout">
+                <Link to={`/home/${workout.title}`} style={{width: "90%"}}>
+                    <div>
+                        <h2 className="title">{workout.title}</h2>
+                        <small>{workout.day}</small>
+                    </div>
+                </Link>
+                <div style={{width: "10%", display: "flex", alignItems: "center", justifyContent: "center"}}>
+                    <Link to={`/editWorkout/${workout.title}`} state={workout}>
+                        <MdEdit size="1.5rem"/>
+                    </Link>
                 </div>
-            </Link>
+            </div>
         </div>
     )
 }

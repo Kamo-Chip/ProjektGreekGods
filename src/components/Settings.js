@@ -31,13 +31,14 @@ const Settings = ({setUnits, setTheme, theme}) => {
         root.style.setProperty("--bg-color", bgColor);
         root.style.setProperty("--color-1", color1);
         root.style.setProperty("--color-6", color6);
+        //console.log(theme);
     }
     
     const currentUnits = useContext(UnitsContext);
 
     useEffect(() => {
         console.log(theme);
-    }, []);
+    }, [theme]);
 
     return (
         <ThemeContext.Provider value={theme}>

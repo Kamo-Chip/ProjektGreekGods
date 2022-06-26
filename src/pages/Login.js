@@ -62,7 +62,7 @@ const Login = () => {
                 <input type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
             </section>
             <button disabled={details.loading}>{details.loading ? "Loading..." : "Sign in"}</button>
-            <Link to="/register"><p>Don't have an account?</p></Link>
+            <Link to="/register"><p style={{textDecoration: "underline", textDecorationColor: "var(--color-6)"}}>Don't have an account?</p></Link>
             { error ? <p className="error">{error}</p> : null}
         </form>
     )

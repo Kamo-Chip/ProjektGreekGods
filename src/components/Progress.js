@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { db, auth } from "../firebase";
 import { updateDoc, doc } from "@firebase/firestore";
+import { MdHelp } from "react-icons/md";
 
 const Progress = ({ workoutHistory, setWorkoutHistory }) => {
 
@@ -52,7 +53,7 @@ const Progress = ({ workoutHistory, setWorkoutHistory }) => {
     return (
         <div className="progress">
             <div className="workouts-container">
-                <h1 className="page-header">Workout History</h1>
+                <h1 className="page-header">Progress</h1>
                 <h2 className="page-header" style={{position: "absolute", top: "0", right: "0", marginTop: ".5em", marginRight: ".5em"}} onClick={clearHistory}>Clear</h2>
                 { workoutHistory.length === 0 && <p style={{textAlign: "center"}}>Past workout data will be show here</p> }
                 {Object.keys(groupedWorkoutHistory).map(element => {

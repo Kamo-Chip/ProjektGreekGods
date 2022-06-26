@@ -132,6 +132,9 @@ button {
   background-color: var(--color-6);
   color: var(--color-1);
   margin-bottom: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .title {
@@ -157,7 +160,7 @@ button {
   display: flex;
   flex-direction: column;
   align-self: center;
-  width: 80vw;
+  width: 90%;
 }
 
 .frm-create-workout section {
@@ -180,6 +183,7 @@ button {
 .workout-details-container {
   display: flex;
   flex-direction: column;
+  padding: 0 1em;
 }
 
 .workout-details {
@@ -201,7 +205,7 @@ button {
   flex-direction: column;
   margin-bottom: 1em;
   border-bottom: solid var(--color-6) 2px;
-  width: 95%;
+  width: 100%;
 }
 
 .exercise-container .add{
@@ -213,13 +217,15 @@ button {
   justify-content: space-between;
   justify-self: center;
   height: fit-content;
+  width: 90%;
+}
+
+#exercise-name{
+  padding-left: 1em;
 }
 
 .exercise input {
   width: 50px;
-}
-.exercise-name{
-  width: 180px !important;
 }
 
 /*Navigation*/
@@ -339,5 +345,29 @@ button {
 
 .error {
   color: var(--color-4);
+  text-align: center;
+}
+
+.help {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1000;
+  background-color: var(--color-5);
+  margin: 0 auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 100px;
+  align-items: center;
+  height: fit-content;
+  width: 90%;
+  border-radius: 5px;
+  border: solid var(--color-1) 2px;
+  color: #000;
+}
+
+.help p {
   text-align: center;
 }

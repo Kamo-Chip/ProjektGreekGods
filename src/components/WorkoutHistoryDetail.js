@@ -4,6 +4,7 @@ import formatDate from "../utils/formatDate";
 import { Timestamp } from "@firebase/firestore";
 import { getElementError } from "@testing-library/react";
 import { UnitsContext } from "../contexts/units-context";
+import convertWeight from "../utils/convertWeight";
 
 const WorkoutHistoryDetail = () => {
     const location = useLocation();
@@ -32,37 +33,34 @@ const WorkoutHistoryDetail = () => {
             paddingBottom: "1em"
         }}>
             <h1 className="page-header">Workout Recap</h1>
-            <p style={{alignSelf:"center", textAlign: "center", margin: "0em"}}>{`Completed on: ${formatDate(new Timestamp(workout.dateCompleted.seconds, workout.dateCompleted.nanoseconds).toDate())}`}</p>
-            <p style={{alignSelf: "center", marginBottom: "0em", textAlign:"center"}}>{`Volume: ${workout.volume} ${units.weight}`}</p>
+            <small style={{alignSelf:"center", textAlign: "center", margin: "0em"}}>{`Completed on: ${formatDate(new Timestamp(workout.dateCompleted.seconds, workout.dateCompleted.nanoseconds).toDate())}`}</small>
+            <p style={{alignSelf: "center", marginBottom: "0em", textAlign:"center"}}>&Sigma; {`volume: ${units.weight === "kg" ? workout.volume : convertWeight(workout.volume)} ${units.weight}`}</p>
             <div style={{
                 textAlign: "center"
             }}>
-                <h2 className="page-header">Comment</h2>
-                <p>{workout.comment}</p>
+                <h2 className="page-header" style={{textAlign: "left", paddingLeft: ".8em"}}>Comment</h2>
+                <textarea value={workout.comment} readOnly style={{width: "90%", height: "60px", fontSize: "1rem"}}/>
             </div>
-            <div style={{paddingLeft: ".8em", paddingRight: ".8em"}}>
-                <h2 className="page-header">Performance</h2>
+            <h2 className="page-header" style={{textAlign: "left", paddingLeft: ".8em", marginBottom: "0"}}>Performance</h2>
+            <div style={{paddingLeft: "1.3em", paddingRight: ".8em"}}> 
                 <div className="title-header" style={{
                     display: "flex",
                     flexDirection: "row",
-                    // width: "100vw",
-
                 }}>
                     <p style={{
-                        width: "40%",
+                        width: "35%",
                     }}>Exercise</p>
                     <div style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        width: "60%"
+                      width: "65%",
+                      justifyContent: "space-between",
+                      display: "grid",
+                      gridTemplateColumns: "repeat(4, 1fr)",
+                    
                     }}>
-                        <p>Sets</p>
-                        <p style={{
-                            marginLeft: "1em"
-                        }}>Reps</p>
-                        <p>Wt ({units.weight})</p>
-                        <p>Vol. ({units.weight})</p>
+                        <p style={{textAlign: "center"}}>Sets</p>
+                        <p style={{textAlign: "center"}}>Reps</p>
+                        <p style={{textAlign: "center"}}>Weight</p>
+                        <p style={{textAlign: "center"}}>Vol.({units.weight})</p>
                     </div>
                 </div>
                 {workout.exercises && workout.exercises.map(element => {
@@ -100,14 +98,14 @@ const WorkoutHistoryDetail = () => {
                                         )
                                     })}
                                 </div>
-                                <p style={{textAlign: "center"}}>{element.volume}</p>
+                                <p style={{textAlign: "center"}}>{units.weight === "kg" ? element.volume : convertWeight(element.volume)} {units.weight}</p>
                             </div>
                         </div>
                         )
                     })}
             </div>
             <div style={{display: "flex", flexDirection: "column"}}>
-                <h2 className="page-header" style={{paddingLeft: ".8em"}}>Progress Pic</h2>
+                <h2 className="page-header" style={{textAlign: "left", paddingLeft: ".8em"}}>Progress Pic</h2>
                 <img style={{width: "90%", alignSelf: "center"}} src={workout.progressPic} alt="Pic not provided"/>
             </div>
 

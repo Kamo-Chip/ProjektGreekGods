@@ -142,7 +142,7 @@ const Comment = ({workout}) => {
                     <input onChange={handleMediaChange} name="progress-pic" id="progress-pic" type="file" multiple accept="image/*" style={{
                         display: "none",
                     }}/>
-                    <p>Upload progress pic</p>
+                    <p style={{textAlign: "center", marginTop: "0", fontWeight: "bold"}}>Upload progress pic</p>
                 </div>
                 {progressPic ? <img style={{
                     width: "300px",
