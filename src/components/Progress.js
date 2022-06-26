@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { db, auth } from "../firebase";
+import { db, auth, storage } from "../firebase";
 import { updateDoc, doc } from "@firebase/firestore";
 import { MdHelp } from "react-icons/md";
+import { deleteObject, ref} from "firebase/storage";
 
 const Progress = ({ workoutHistory, setWorkoutHistory }) => {
 
@@ -45,7 +46,12 @@ const Progress = ({ workoutHistory, setWorkoutHistory }) => {
         })
         .catch(err => console.log(err));
 
-        //delete images related to user
+        const Imgref = ref(storage, `images/${auth.currentUser.uid}`);
+
+        deleteObject(Imgref)
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
     groupWorkouts();

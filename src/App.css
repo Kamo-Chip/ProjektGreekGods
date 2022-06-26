@@ -90,7 +90,8 @@ button {
 }
 
 .frm-register section, .frm-login section {
-  display: flex;
+  display: grid;
+  grid-template-columns: 30% 70%;
   width: 100%;
   justify-content: space-between;
 }
@@ -102,6 +103,7 @@ button {
 .frm-register button, .frm-login button {
   margin-top: 1em;
 }
+
 /*Routines*/
 
 .routines, .progress {

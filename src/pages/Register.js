@@ -3,6 +3,7 @@ import { setDoc, doc, collection } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { GrView, GrFormViewHide } from "react-icons/gr";
 
 const Register = () => {
     const [ user, setUser ] = useState({
@@ -16,6 +17,8 @@ const Register = () => {
     });
 
     const [ loading, setLoading ] = useState(false);
+
+    const [ passHidden, setPassHidden ] = useState(true);
 
     useEffect(() => {
 
@@ -55,6 +58,19 @@ const Register = () => {
 
         setUser({...user, [e.target.name]: e.target.value});
     }
+
+    let count = 0;
+    const togglePassword = () => {
+        const passwordField = document.querySelector("#password");
+        if(count % 2 === 0){
+            passwordField.type = "text";
+            setPassHidden(false);
+        }else{
+            passwordField.type = "password";
+            setPassHidden(true);
+        }
+        count++;
+    }
     return (
         <form onSubmit={handleSubmit} className="frm-register">
             <h1 className="page-header">Create Account</h1>
@@ -64,7 +80,20 @@ const Register = () => {
             </section>
             <section>
                 <label htmlFor="password">Password:</label>
-                <input type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
+                <div style={{display: "flex"}}>
+                    <input id="password" type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
+                    {passHidden ? 
+                        <GrFormViewHide onClick={togglePassword} size="24px" style={{
+                            marginLeft: "1em",
+                            marginTop: ".5em"
+                        }}/>
+                        :
+                        <GrView onClick={togglePassword} size="20px" style={{
+                            marginLeft: "1em",
+                            marginTop: ".5em"
+                        }}/>
+                    }
+                </div>
             </section>
             <button disabled={loading}>{loading ? "Loading..." : "Create account"}</button>
             <Link to="/login"><p style={{textDecoration: "underline", textDecorationColor: "var(--color-6)"}}>Already have an account?</p></Link>

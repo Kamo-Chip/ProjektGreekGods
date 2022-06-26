@@ -2,6 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
+import { GrView, GrFormViewHide } from "react-icons/gr";
 
 const Login = () => {   
     const [ user, setUser ] = useState({
@@ -9,6 +10,7 @@ const Login = () => {
         password: "",
     });
 
+    const [ passHidden, setPassHidden ] = useState(true);
 
     const navigate = useNavigate();
 
@@ -50,6 +52,19 @@ const Login = () => {
         setUser({...user, [e.target.name]: e.target.value});
     }
 
+    let count = 0;
+    const togglePassword = () => {
+        const passwordField = document.querySelector("#password");
+        if(count % 2 === 0){
+            passwordField.type = "text";
+            setPassHidden(false);
+        }else{
+            passwordField.type = "password";
+            setPassHidden(true);
+        }
+        count++;
+    }
+
     return (
         <form className="frm-login" onSubmit={handleSubmit}>
             <h1 className="page-header">Sign in</h1>
@@ -58,8 +73,21 @@ const Login = () => {
                 <input type="email" name="email" onChange={handleChange} value={user.email} required={true}/>
             </section>
             <section>
-                <label htmlFor="password">Password:</label>
-                <input type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
+            <label htmlFor="password">Password:</label>
+                <div style={{display: "flex"}}>
+                    <input id="password" type="password" name="password" onChange={handleChange} value={user.password} required={true}/>
+                    {passHidden ? 
+                        <GrFormViewHide onClick={togglePassword} size="24px" style={{
+                            marginLeft: "1em",
+                            marginTop: ".5em"
+                        }}/>
+                        :
+                        <GrView onClick={togglePassword} size="20px" style={{
+                            marginLeft: "1em",
+                            marginTop: ".5em"
+                        }}/>
+                    }
+                </div>
             </section>
             <button disabled={details.loading}>{details.loading ? "Loading..." : "Sign in"}</button>
             <Link to="/register"><p style={{textDecoration: "underline", textDecorationColor: "var(--color-6)"}}>Don't have an account?</p></Link>
