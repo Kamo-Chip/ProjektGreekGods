@@ -98,7 +98,7 @@ const WorkoutHistoryDetail = () => {
                                         )
                                     })}
                                 </div>
-                                <p style={{textAlign: "center"}}>{units.weight === "kg" ? element.volume : convertWeight(element.volume)} {units.weight}</p>
+                                <p style={{textAlign: "center"}}>{units.weight === "kg" ? element.volume : convertWeight(element.volume)}</p>
                             </div>
                         </div>
                         )
