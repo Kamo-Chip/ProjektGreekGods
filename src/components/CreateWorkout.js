@@ -35,6 +35,7 @@ const CreateWorkout = () => {
         e.preventDefault();
 
        setWorkout({...workout, exercises: workout.exercises.concat({})})
+       console.log(workout.exercises);
     }
 
     const handleExerciseChange = (e) => {
@@ -113,6 +114,7 @@ const CreateWorkout = () => {
             src =e.target.parentElement.id;
         }
 
+        console.log(src)
         exercises.forEach(exercise => {
             if(exercise.name !== src){
                 newExercises.push(exercise);
@@ -120,6 +122,7 @@ const CreateWorkout = () => {
         });
 
         setWorkout({...workout, exercises: newExercises});
+
     }
 
     return (
@@ -156,13 +159,14 @@ const CreateWorkout = () => {
                    
                     <div className="exercise-container">
                         {workout.exercises.map((exercise, index) => 
-                            <div style={{display: "flex", width: "100%", justifyContent: "space-between"}}>
+                            <div key={index} style={{display: "flex", width: "100%", justifyContent: "space-between"}}>
                                 <Exercise 
                                     handleExerciseChange={handleExerciseChange} 
                                     setWorkout={setWorkout} 
                                     id={index}
                                     exercise={exercise}
                                     />
+                                    {console.log(exercise)}
                                 <TiDelete id={exercise.name} size="24px" style={{width: "24px", height: "24px"}} onClick={deleteExercise}/>
                              </div>
                             )}

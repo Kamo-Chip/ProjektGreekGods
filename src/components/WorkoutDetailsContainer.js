@@ -124,6 +124,7 @@ const WorkoutDetailsContainer = () => {
             {workout.title && 
                 <WorkoutDetails setWorkout={updateExercises} workout={workout}/>
             }
+            {console.log(workout)}
             <button onClick={handleSubmit} disabled={helpIsActive}>Complete</button>
             
         </div>
